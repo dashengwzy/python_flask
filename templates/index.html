@@ -8,6 +8,7 @@
 {% block head %}
     <link href="{{ url_for('static',filename='css/carousel.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/index.css') }}" rel="stylesheet">
     <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
 {% endblock %}
 
@@ -136,10 +137,37 @@
     <div class="bs-example" data-example-id="thumbnails-with-custom-content">
         <div class="row">
           <div class="col-sm-6 col-md-4">
-               <div class="panel panel-default">
+               <div class="panel  panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            带有 title 的面板标题
+                            热门数据（按下载量）
+                        </h3>
+                    </div>
+{#                    <div class="panel-body"></div>#}
+                            <ul class="list-group">
+                              <li class="list-group-item">
+                                <span >
+                                    <img src="/static/images/down_icon.png" class="down_icon">
+                                </span>
+                                Cras justo odio
+                              </li>
+                              <li class="list-group-item">
+                                <span class="badge">2</span>
+                                Dapibus ac facilisis in
+                              </li>
+                              <li class="list-group-item">
+                                <span class="badge">1</span>
+                                Morbi leo risus
+                              </li>
+                            </ul>
+{#                   <div class="panel-footer">查看更多</div>#}
+               </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="panel  panel-info">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            最新数据（按照上传时间）
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -148,22 +176,10 @@
                </div>
           </div>
           <div class="col-sm-6 col-md-4">
-            <div class="panel panel-default">
+            <div class="panel panel-info">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            带有 title 的面板标题
-                        </h3>
-                    </div>
-                    <div class="panel-body">
-                        面板内容
-                    </div>
-               </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            带有 title 的面板标题
+                            资讯动态
                         </h3>
                     </div>
                     <div class="panel-body">
