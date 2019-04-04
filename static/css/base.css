@@ -1,0 +1,26 @@
+#web_bg{
+  position:fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  min-width: 1000px;
+  z-index:-10;
+  zoom: 1;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-position: center 0;
+  background-image: url("../images/qq.jpg");
+}
+
+.bottom_panel{
+    background-color: #ffffff;
+    padding-top: 20px;
+    border-radius:4px;
+}
+.carousel_bottom{
+    margin-bottom: 20px;
+}

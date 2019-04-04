@@ -4,15 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}-海洋数据共享平台</title>
-    <link href="{{ url_for('static',filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet">
     <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
     <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
-
+    <link href="{{ url_for('static',filename='css/carousel.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/base.css') }}" rel="stylesheet">
     {% block head %}
-
     {% endblock %}
 </head>
 <body>
+{#背景图片#}
+<div id="web_bg">
+
+</div>
 {#    导航条#}
     <div class="navbar-wrapper">
       <div class="container">
@@ -30,7 +36,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="/welcome">首页</a></li>
+                <li class="active"><a href="{{ url_for('index') }}">首页</a></li>
                 <li><a href="/InformationDispaly">数据服务</a></li>
                 <li><a href="/IndexCollect">潮汐预报</a></li>
               </ul>
@@ -40,9 +46,19 @@
 
       </div>
     </div>
+
     {% block main %}
-    
+
     {% endblock %}
+
+{#        底部固定footer#}
+{#      <div class="container">#}
+{#      <!-- Example row of columns -->#}
+{#           <footer>#}
+{#                <p>&copy; 2019 海洋数据共享平台</p>#}
+{#           </footer>#}
+{#      </div>#}
+
     {% block script %}
 
     {% endblock %}

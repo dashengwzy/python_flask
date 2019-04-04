@@ -1,0 +1,100 @@
+{#{% extends "bootstrap/base.html"  %}#}
+{% extends 'base.html' %}
+{% block title %}
+    海洋生物
+{% endblock %}
+
+{% block head %}
+    <link href="{{ url_for('static',filename='css/marine_organism.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+{#        页面主体的所有内容都放在下面的container里面#}
+        <div class="container marketing bottom_panel" >
+{#            顶部标题#}
+            <div class="page-header">
+              <h1>海洋生物数据集</h1>
+                <p>海洋生物数据集覆盖美国近海、日本东部、爱尔兰、澳大利亚等海域，包括浮游动物、浮游植物、初级生产力、鱼类、贝类等数据。</p>
+            </div>
+{#            根据输入条件搜索内容#}
+            <form class="form-inline">
+              <div class="form-group">
+                   <label for="exampleInputName2">关键字检索：</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字">
+                  </div>
+              </div>
+              <button type="submit" class="btn btn-primary">查询</button>
+            </form>
+
+
+
+        <div class="row">
+          <div class="col-sm-6 col-md-4">
+            {#            用面板将一个数据块装起来#}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#">
+                          <img class="media-object" data-src="holder.js/64x64" alt="Generic placeholder image">
+                        </a>
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Top aligned media</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+           {#            用面板将一个数据块装起来#}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#">
+                          <img class="media-object" data-src="holder.js/64x64" alt="Generic placeholder image">
+                        </a>
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Top aligned media</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            {#            用面板将一个数据块装起来#}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="media">
+                      <div class="media-left">
+                        <a href="#">
+                          <img class="media-object" data-src="holder.js/64x64" alt="Generic placeholder image">
+                        </a>
+                      </div>
+                      <div class="media-body">
+                        <h4 class="media-heading">Top aligned media</h4>
+                        <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                        <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+{% endblock %}
+{#script资源文件#}
+{% block script %}
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+{% endblock %}

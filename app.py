@@ -54,6 +54,11 @@ def index():
     return render_template('index.html', **context)
 
 
+@app.route('/marine_organism')
+def marine_organism():
+    return render_template('marine_organism.html')
+
+
 @app.route('/form',methods = ['GET','POST'])
 def hello_form():
     if request.method == 'POST':
