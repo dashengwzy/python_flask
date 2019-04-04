@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94f492c5-9484-4e5f-a312-4b7f42098523" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -194,7 +193,7 @@
       <workItem from="1554194538915" duration="11059000" />
       <workItem from="1554209779882" duration="1132000" />
       <workItem from="1554257032103" duration="28647000" />
-      <workItem from="1554302955436" duration="2440000" />
+      <workItem from="1554302955436" duration="2555000" />
     </task>
     <task id="LOCAL-00001" summary="调整首页样式">
       <created>1554303203862</created>
@@ -217,11 +216,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554303705860</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="调整样式">
+      <created>1554305491290</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1554305491290</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43278000" />
+    <option name="totallyTimeSpent" value="43393000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -233,7 +239,7 @@
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" weight="0.3295082" />
-      <window_info anchor="bottom" id="Version Control" order="3" weight="0.3295082" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="3" visible="true" weight="0.3295082" />
       <window_info anchor="bottom" id="Python Console" order="4" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
@@ -253,10 +259,21 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="调整首页样式" />
     <MESSAGE value="提交图片" />
-    <option name="LAST_COMMIT_MESSAGE" value="提交图片" />
+    <MESSAGE value="调整样式" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整样式" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test1$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1554303248591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
