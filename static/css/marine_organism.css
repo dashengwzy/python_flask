@@ -1,0 +1,18 @@
+.bottom_panel{
+    background-color: #ffffff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius:4px;
+    margin-top: 8rem;
+}
+
+.data_img{
+    width:160px;
+}
+.panel_bottom{
+    margin-top: 20px;
+}
+/*将查看按钮放到面板的最右边*/
+.see_data_btn{
+    margin-left: 283px;
+}
