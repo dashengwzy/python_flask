@@ -21,4 +21,19 @@ class Banner(db.Model):
     button_font = db.Column(db.String(100), nullable=False)
     # 按钮跳转链接
     button_link = db.Column(db.String(1000), nullable=False)
+    
+    
+# 创建海洋生物数据集模型，然后利用manage插件将模型映射到数据库的表当中
+class Marine_organism(db.Model):
+    __tablename__ = 'marine_organism'
+    # 海洋生物图片的主键ID
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # 海洋生物数据集图片存放的路径
+    route = db.Column(db.String(100),  nullable=False)
+    # 海洋生物数据集名称
+    data_set_name = db.Column(db.String(100), nullable=False)
+    # 海洋生物数据集大小
+    data_set_size = db.Column(db.String(100), nullable=False)
+    # # 海洋生物数据集来源
+    data_set_source = db.Column(db.String(100), nullable=False)
 
