@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from exts import db
 from models import Banner
 from models import Marine_organism
+from models import Organism_data
 import config
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ app.config.from_object(config)
 db.init_app(app)
 
 # 新建一个Banner模型，采用models分开的方式
-# flask-scrpts的方式
+# flask-scripts的方式
 
 
 @app.route('/base')
@@ -49,16 +50,43 @@ def marine_organism():
         print(context)
         return render_template('marine_organism.html', **context)
     else:
+        # 获取用户输入的关键字
         key_word = request.form.get('key_word')
+        # 将关键字拼接成模糊字段
         args = '%' + key_word + '%'
         marine_organism_search = Marine_organism.query.filter(Marine_organism.data_set_name.like(args)).all()
         context = {
             'marine_organisms': marine_organism_search
         }
-        print(context)
         return render_template('marine_organism.html', **context)
 
 
+# 单个海洋生物数据集的展示页面
+@app.route('/marine_organism_one/<marine_organism_id>/', methods=['GET', 'POST'])
+def organism_one(marine_organism_id):
+    # 如果是正常的加载当前页面
+    if request.method == 'GET':
+        marine_organism_one = Marine_organism.query.filter(Marine_organism.id == marine_organism_id).first()
+        # 根据数据集的归属类型，查询到所有属于本数据集的所有数据
+        organism_data = Organism_data.query.filter(Organism_data.organism_data_kind == marine_organism_one.data_set_name).all()
+        context = {
+            'marine_organism_one': marine_organism_one,
+            'organism_datas': organism_data
+        }
+        return render_template('marine_organism_one.html', **context)
+    # 如果是从当前页面获取数据进行进一步操作
+    else:
+        # 获取用户输入的关键字
+        key_word = request.form.get('key_word')
+        # 将关键字拼接成模糊字段
+        args = '%' + key_word + '%'
+        marine_organism_one = Marine_organism.query.filter(Marine_organism.id == marine_organism_id).first()
+        organism_datas = Organism_data.query.filter(Organism_data.organism_data_name.like(args)).all()
+        context = {
+            'marine_organism_one': marine_organism_one,
+            'organism_datas': organism_datas
+        }
+        return render_template('marine_organism_one.html', **context)
 
 # @app.route('/form',methods = ['GET','POST'])
 # def hello_form():
