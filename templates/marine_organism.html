@@ -17,11 +17,11 @@
                 <p>海洋生物数据集覆盖美国近海、日本东部、爱尔兰、澳大利亚等海域，包括浮游动物、浮游植物、初级生产力、鱼类、贝类等数据。</p>
             </div>
 {#            根据输入条件搜索内容#}
-            <form class="form-inline">
+            <form class="form-inline" action="{{ url_for('marine_organism') }}" method="post">
               <div class="form-group">
                    <label for="exampleInputName2">关键字检索：</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字">
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字" name="key_word">
                   </div>
               </div>
               <button type="submit" class="btn btn-primary">查询</button>
@@ -30,18 +30,20 @@
 
 {#        数据集的展示页面#}
         <div class="row panel_bottom">
+{#        循环展示数据块#}
+             {% for marine_organism in marine_organisms %}
           <div class="col-sm-6 col-md-6">
             {#            用面板将一个数据块装起来#}
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="media">
                       <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
+                          <img class="media-object data_img" src="{{ marine_organism.route }}" alt="Generic placeholder image">
                       </div>
                       <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
+                        <h4 class="media-heading text-primary">{{ marine_organism.data_set_name }}</h4>
+                        <p>数据集大小：{{ marine_organism.data_set_size }}</p>
+                        <p>数据集来源：{{ marine_organism.data_set_source }}</p>
                         <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
                       </div>
                     </div>
@@ -49,139 +51,7 @@
 {#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
             </div>
           </div>
-          <div class="col-sm-6 col-md-6">
-            {#            用面板将一个数据块装起来#}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
-                        <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
-                      </div>
-                    </div>
-                </div>
-{#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6">
-            {#            用面板将一个数据块装起来#}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
-                        <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
-                      </div>
-                    </div>
-                </div>
-{#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6">
-            {#            用面板将一个数据块装起来#}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
-                        <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
-                      </div>
-                    </div>
-                </div>
-{#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6">
-            {#            用面板将一个数据块装起来#}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
-                        <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
-                      </div>
-                    </div>
-                </div>
-{#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6">
-            {#            用面板将一个数据块装起来#}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
-                        <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
-                      </div>
-                    </div>
-                </div>
-{#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6">
-            {#            用面板将一个数据块装起来#}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
-                        <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
-                      </div>
-                    </div>
-                </div>
-{#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6">
-            {#            用面板将一个数据块装起来#}
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="media">
-                      <div class="media-left">
-                          <img class="media-object data_img" src="/static/images/qq.jpg" alt="Generic placeholder image">
-                      </div>
-                      <div class="media-body">
-                        <h4 class="media-heading text-primary">COPEPOD海洋生物数据集</h4>
-                        <p>数据集大小：103M</p>
-                        <p>数据来源：美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。</p>
-                        <button type="button" class="btn btn-primary btn-sm see_data_btn">查看数据</button>
-                      </div>
-                    </div>
-                </div>
-{#                <button type="button" class="btn btn-primary btn-sm">查看数据</button>#}
-            </div>
-          </div>
+             {% endfor %}
         </div>
 {#        数据集分页#}
         <nav aria-label="Page navigation" class="text-center">

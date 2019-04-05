@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from flask_bootstrap import Bootstrap
 from exts import db
 from models import Banner
-
+from models import Marine_organism
 import config
 
 app = Flask(__name__)
@@ -15,30 +15,16 @@ db.init_app(app)
 
 
 @app.route('/base')
-def add():
-    #增加数据
-    # # 增加：
-    # banner1 = Banner(title='第一个轮播图_海洋生物',
-    #                  route='/static/images/banner1.jpg',
-    #                  main_title='海洋生物',
-    #                  vice_title_one='海洋生物数据集覆盖美国近海、日本东部、爱尔兰、澳大利亚等海域',
-    #                  vice_title_two='包括浮游动物、浮游植物、初级生产力、鱼类、贝类等数据',
-    #                  button_font='查看数据')
-    # banner2 = Banner(title='第二个轮播图_海洋水文',
-    #                  route='/static/images/banner2.jpg',
-    #                  main_title='海洋水文',
-    #                  vice_title_one='通过台站、浮标、调查船等观测手段获取的海洋水文数据，覆盖全球海域',
-    #                  vice_title_two='主要包括温度、盐度、波浪、水位及海流等要素',
-    #                  button_font='查看数据')
-    # banner3 = Banner(title='第三个轮播图_海底地形',
-    #                  route='/static/images/banner2.png',
-    #                  main_title='海底地形',
-    #                  vice_title_one='海底地形数据集覆盖全球海洋、陆地的栅格高程地形数据',
-    #                  vice_title_two='数据分辨率从5′、2′、1′、30″、15″不等',
-    #                  button_font='查看数据')
-    # db.session.add(banner1)
-    # db.session.add(banner2)
-    # db.session.add(banner3)
+def base():
+    # 增加数据
+    # 增加：
+    # marine_organism1 = Marine_organism(
+    #                  route='/static/images/qq.jpg',
+    #                  data_set_name='COPEPOD海洋生物数据集',
+    #                  data_set_size='103M',
+    #                  data_set_source='美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。',
+    #                  )
+    # db.session.add(marine_organism1)
     # # 事务
     # db.session.commit()
     # banner1 = Banner.query.filter(Banner.id == 1).first()
@@ -54,19 +40,34 @@ def index():
     return render_template('index.html', **context)
 
 
-@app.route('/marine_organism')
+@app.route('/marine_organism', methods=['GET', 'POST'])
 def marine_organism():
-    return render_template('marine_organism.html')
-
-
-@app.route('/form',methods = ['GET','POST'])
-def hello_form():
-    if request.method == 'POST':
-     name = request.form.get('name')
-     print(name)
-     return render_template('post_test.html', name=name)
+    if request.method == 'GET':
+        context = {
+            'marine_organisms': Marine_organism.query.order_by('id').all()
+        }
+        print(context)
+        return render_template('marine_organism.html', **context)
     else:
-     return render_template('post_test.html')
+        key_word = request.form.get('key_word')
+        args = '%' + key_word + '%'
+        marine_organism_search = Marine_organism.query.filter(Marine_organism.data_set_name.like(args)).all()
+        context = {
+            'marine_organisms': marine_organism_search
+        }
+        print(context)
+        return render_template('marine_organism.html', **context)
+
+
+
+# @app.route('/form',methods = ['GET','POST'])
+# def hello_form():
+#     if request.method == 'POST':
+#      name = request.form.get('name')
+#      print(name)_
+#      return render_template('post_test.html', name=name)
+#     else:
+#      return render_template('post_test.html')
 
 
 if __name__ == '__main__':
