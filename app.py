@@ -1,18 +1,42 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+from flask_uploads import UploadSet, IMAGES, configure_uploads, ALL
 from flask_bootstrap import Bootstrap
 from exts import db
 from models import Banner
 from models import Marine_organism
 from models import Organism_data
 import config
+import os
 
 app = Flask(__name__)
+# 配置文件上传的路径以及限制条件
+app.config['UPLOADED_PHOTO_DEST'] =  os.path.join(os.path.dirname(os.path.abspath(__file__)), "static\images")
+app.config['UPLOADED_PHOTO_ALLOW'] = ['png', 'jpg']
+# 实例化 UploadSet 对象
+photos = UploadSet('PHOTO')
+# 将 app 的 config 配置注册到 UploadSet 实例 photos
+configure_uploads(app, photos)
 bootstrap = Bootstrap(app)
 app.config.from_object(config)
-db.init_app(app)
-
 # 新建一个Banner模型，采用models分开的方式
 # flask-scripts的方式
+db.init_app(app)
+
+
+
+@app.route('/upload', methods=['POST', 'GET'])
+def upload():
+    if request.method == 'POST' and 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        return redirect(url_for('show', name=filename))
+    return render_template('upload.html')
+
+@app.route('/photo/<name>')
+def show(name):
+    if name is None:
+        return "wrong"
+    url = photos.url(name)
+    return render_template('show.html', url=url, name=name)
 
 
 @app.route('/base')
