@@ -132,12 +132,14 @@ def organism_one_download(filename):
         abort(404)
 
 
-# 海洋生物数据集总展示页面
-@app.route('/marine_hydrology', methods=['GET', 'POST'])
-def marine_hydrology():
+# 海洋水文数据集总展示页面
+@app.route('/marine_hydrology/list/<int:page>', methods=['GET', 'POST'])
+def marine_hydrology(page):
     if request.method == 'GET':
+        if page is None:
+            page = 1
         context = {
-            'marine_hydrologys': Marine_hydrology.query.order_by('id').all()
+            'marine_hydrologys': Marine_hydrology.query.order_by('id').paginate(page=page, per_page=4)
         }
         return render_template('marine_hydrology.html', **context)
     else:
@@ -145,12 +147,24 @@ def marine_hydrology():
         key_word = request.form.get('hydrology_key_word')
         # 将关键字拼接成模糊字段
         args = '%' + key_word + '%'
-        marine_hydrology_search = Marine_hydrology.query.filter(Marine_hydrology.data_set_name.like(args)).all()
+        marine_hydrology_search = Marine_hydrology.query.filter(
+            Marine_hydrology.data_set_name.like(args)
+        ).paginate(page=page, per_page=4)
         context = {
             'marine_hydrologys': marine_hydrology_search
         }
         return render_template('marine_hydrology.html', **context)
 
+# 海洋水文数据集分页功能页面
+# @app.route('/marine_hydrology/list/<int:page>', methods=['GET'])
+# def hydrology_list_page(page=None):
+#     if page is None:
+#         page = 1
+#     page_data = Marine_hydrology.query.order_by('id').paginate(page=1, per_page=2)
+#     context = {
+#         'marine_hydrologys': page_data
+#     }
+#     return render_template('marine_hydrology_page.html', page_data)
 
 # @app.route('/form',methods = ['GET','POST'])
 # def hello_form():
