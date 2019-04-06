@@ -5,6 +5,7 @@ from exts import db
 from models import Banner
 from models import Marine_organism
 from models import Organism_data
+from models import Marine_hydrology
 import config
 import os
 
@@ -47,22 +48,23 @@ def show(name):
 #             return send_from_directory('static/upload_file', filename, as_attachment=True)
 #         abort(404)
 
-@app.route('/base')
-def base():
-    # 增加数据
-    # 增加：
-    # marine_organism1 = Marine_organism(
-    #                  route='/static/images/qq.jpg',
-    #                  data_set_name='COPEPOD海洋生物数据集',
-    #                  data_set_size='103M',
-    #                  data_set_source='美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。',
-    #                  )
-    # db.session.add(marine_organism1)
-    # # 事务
-    # db.session.commit()
-    # banner1 = Banner.query.filter(Banner.id == 1).first()
-    # img_route = banner1.route
-    return render_template('base.html', title_name='海洋数据平台')
+# @app.route('/base')
+# def base():
+#     # 增加数据
+#     # 增加：
+#     Marine_hydrology1 = Marine_hydrology(
+#                      route='/static/images/marine_hydrology3.jpg',
+#                      data_set_name='COPEPOD海洋生物数据集',
+#                      data_set_size='103M',
+#                      data_set_time_frame='1998年至2019年',
+#                      data_set_loc='南海至北海道',
+#                      data_set_abstract='数据介绍',
+#                      data_set_source='美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。',
+#                      )
+#     db.session.add(Marine_hydrology1)
+#     # 事务
+#     db.session.commit()
+#     return render_template('base.html', title_name='海洋数据平台')
 
 
 @app.route('/index')
@@ -128,6 +130,27 @@ def organism_one_download(filename):
         if os.path.isfile(os.path.join('static/upload_file', filename)):
             return send_from_directory('static/upload_file', filename, as_attachment=True)
         abort(404)
+
+
+# 海洋生物数据集总展示页面
+@app.route('/marine_hydrology', methods=['GET', 'POST'])
+def marine_hydrology():
+    if request.method == 'GET':
+        context = {
+            'marine_hydrologys': Marine_hydrology.query.order_by('id').all()
+        }
+        return render_template('marine_hydrology.html', **context)
+    else:
+        # 获取用户输入的关键字
+        key_word = request.form.get('hydrology_key_word')
+        # 将关键字拼接成模糊字段
+        args = '%' + key_word + '%'
+        marine_hydrology_search = Marine_hydrology.query.filter(Marine_hydrology.data_set_name.like(args)).all()
+        context = {
+            'marine_hydrologys': marine_hydrology_search
+        }
+        return render_template('marine_hydrology.html', **context)
+
 
 # @app.route('/form',methods = ['GET','POST'])
 # def hello_form():
