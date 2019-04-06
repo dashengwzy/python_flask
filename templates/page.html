@@ -1,0 +1,44 @@
+{% macro page(data,url)  %}
+  {% if data %}
+      {#        数据集分页#}
+        <nav aria-label="Page navigation" class="text-center">
+          <ul class="pagination">
+              {% if data.has_prev %}
+                    <li >
+                      <a href="{{ url_for(url,page=data.prev_num) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+              {% else %}
+                    <li class="disabled">
+                      <a aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+              {% endif %}
+              {% for v in data.iter_pages() %}
+                    {% if v %}
+                        {% if v != data.page %}
+                            <li><a href="{{ url_for(url,page=v) }}">{{ v }}</a></li>
+                        {% else %}
+                            <li class="active"><a href="{{ url_for(url,page=v) }}">{{ v }}</a></li>
+                        {% endif %}
+                    {% endif %}
+              {% endfor %}
+            {% if data.has_next %}
+                    <li >
+                      <a href="{{ url_for(url,page=data.next_num) }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+              {% else %}
+                    <li class="disabled">
+                      <a  aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+            {% endif %}
+          </ul>
+        </nav>
+  {% endif %}
+{% endmacro %}
