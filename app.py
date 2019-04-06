@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, abort, send_from_directory
 from flask_uploads import UploadSet, IMAGES, configure_uploads, ALL
 from flask_bootstrap import Bootstrap
 from exts import db
@@ -38,6 +38,14 @@ def show(name):
     url = photos.url(name)
     return render_template('show.html', url=url, name=name)
 
+
+# 下载文件测试函数
+# @app.route('/download/file_name:<filename>', methods=['GET'])
+# def download(filename):
+#     if request.method == "GET":
+#         if os.path.isfile(os.path.join('static/upload_file', filename)):
+#             return send_from_directory('static/upload_file', filename, as_attachment=True)
+#         abort(404)
 
 @app.route('/base')
 def base():
@@ -111,6 +119,15 @@ def organism_one(marine_organism_id):
             'organism_datas': organism_datas
         }
         return render_template('marine_organism_one.html', **context)
+
+
+# 如果点击的是下载按钮，则进行文件下载
+@app.route('/organism_one_download/file_name:<filename>', methods=['GET', 'POST'])
+def organism_one_download(filename):
+        print(filename)
+        if os.path.isfile(os.path.join('static/upload_file', filename)):
+            return send_from_directory('static/upload_file', filename, as_attachment=True)
+        abort(404)
 
 # @app.route('/form',methods = ['GET','POST'])
 # def hello_form():

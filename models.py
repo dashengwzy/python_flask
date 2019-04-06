@@ -49,8 +49,8 @@ class Organism_data(db.Model):
     __tablename__ = 'organism_data'
     # 海洋生物数据集表格的主键ID
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    # 海洋生物数据集表格数据本身
-    organism_data_self = db.Column(db.Text, nullable=False)
+    # 海洋生物数据集表格数据本身在文件夹存储的位置
+    organism_data_route = db.Column(db.String(100), nullable=False)
     # 海洋生物数据集表格数据名称
     organism_data_name = db.Column(db.String(100),  nullable=False)
     # 海洋生物数据集上传时间

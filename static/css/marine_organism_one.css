@@ -43,3 +43,12 @@
 .panel-height{
     height: 110px;
 }
+
+/*去除a标签默认样式*/
+.download_a_none{
+    text-decoration:none;
+    out-line: none;
+}
+.download_a_none:hover{
+    text-decoration:none;
+}
