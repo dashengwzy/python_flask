@@ -150,6 +150,7 @@ def marine_hydrology(page, state):
         # 获取用户输入的关键字
         # search和分页不能同时实现的原因在于，search第二次分页因为走得是第一条路，所以数据不一样了。先不考虑直接点击按钮的问题
         key_word = request.form.get('hydrology_key_word')
+        print(key_word)
         if key_word is None or key_word is "":
                 key_word = myglobal.get_value()
                 # 将关键字拼接成模糊字段
@@ -160,7 +161,7 @@ def marine_hydrology(page, state):
             args = '%' + myglobal.get_value() + '%'
         marine_hydrology_search = Marine_hydrology.query.filter(
             Marine_hydrology.data_set_name.like(args)
-        ).paginate(page=page, per_page=4)
+        ).paginate(page=page, per_page=8)
         context = {
             'marine_hydrologys': marine_hydrology_search,
             'state': 1
@@ -170,7 +171,7 @@ def marine_hydrology(page, state):
 # 装饰函数，运行在最前面
 @app.before_request
 def before_request():
-    g.key_word = ""
+    myglobal.set_value("")
 
 # 海洋水文数据集分页功能页面
 # @app.route('/marine_hydrology/list/<int:page>', methods=['GET'])
