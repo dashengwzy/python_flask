@@ -18,7 +18,7 @@
                 <p>通过台站、浮标、调查船等观测手段获取的海洋水文数据，覆盖全球海域，主要包括温度、盐度、波浪、水位及海流等要素。</p>
             </div>
 {#            根据输入条件搜索内容#}
-            <form class="form-inline" action="{{ url_for('marine_hydrology',page=1) }}" method="post">
+            <form class="form-inline" action="{{ url_for('marine_hydrology',page=1,state=1) }}" method="post">
               <div class="form-group">
                    <label for="exampleInputName2">关键字检索：</label>
                   <div class="input-group">
@@ -53,7 +53,7 @@
   </div>
 
 {#数据集分页功能通过pg挂载page.html页面，引入分页控制器#}
-{{ pg.page(marine_hydrologys,'marine_hydrology') }}
+{{ pg.page(marine_hydrologys,'marine_hydrology',state) }}
 
 
 </div>
