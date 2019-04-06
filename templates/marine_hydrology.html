@@ -43,7 +43,12 @@
                         <h4 class="media-heading text-primary">{{ marine_hydrology.data_set_name }}</h4>
                         <p>数据集大小：{{ marine_hydrology.data_set_size }}</p>
                         <p>数据集来源：{{ marine_hydrology.data_set_source }}</p>
-                        <p><a class="btn btn-primary btn-sm see_data_btn "  role="button">查看数据</a></p>
+                        <p><a class="btn btn-primary btn-sm see_data_btn "
+                              href="{{ url_for('hydrology_one',marine_hydrology_id=marine_hydrology.id) }}"
+                              role="button">
+                            查看数据
+                            </a>
+                        </p>
                       </div>
                     </div>
                 </div>

@@ -61,7 +61,7 @@ class Organism_data(db.Model):
     organism_data_kind = db.Column(db.String(100), nullable=False)
 
 
-# 创建海洋生物数据集模型，然后利用manage插件将模型映射到数据库的表当中
+# 创建海洋水文数据集模型，然后利用manage插件将模型映射到数据库的表当中
 class Marine_hydrology(db.Model):
     __tablename__ = 'marine_hydrology'
     # 海洋水文图片的主键ID
@@ -80,3 +80,22 @@ class Marine_hydrology(db.Model):
     data_set_loc = db.Column(db.String(100), nullable=False)
     # 海洋水文数据集摘要
     data_set_abstract = db.Column(db.String(10000), nullable=False)
+
+
+# 创建海洋水文数据集表格对象，然后利用manage插件将模型映射到数据库的表当中
+class Hydrology_data(db.Model):
+    __tablename__ = 'hydrology_data'
+    # 海洋水文数据集表格的主键ID
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # 海洋水文数据集表格数据本身在文件夹存储的位置
+    data_route = db.Column(db.String(100), nullable=False)
+    # 海洋水文数据集表格数据名称
+    data_name = db.Column(db.String(100),  nullable=False)
+    # 海洋水文数据集上传时间
+    data_time = db.Column(db.DateTime, nullable=False)
+    # 海洋水文数据集数据格式
+    data_format = db.Column(db.String(100), nullable=False)
+    # 海洋水文数据集表格所属门类
+    data_kind = db.Column(db.String(100), nullable=False)
+    # 海洋水文数据集表格更新频率
+    data_refresh = db.Column(db.String(100), nullable=False)

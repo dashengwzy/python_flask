@@ -6,6 +6,7 @@ from models import Banner
 from models import Marine_organism
 from models import Organism_data
 from models import Marine_hydrology
+from models import Hydrology_data
 import config
 import os
 import myglobal
@@ -56,16 +57,15 @@ def show(name):
 # def base():
 #     # 增加数据
 #     # 增加：
-#     Marine_hydrology1 = Marine_hydrology(
-#                      route='/static/images/marine_hydrology3.jpg',
-#                      data_set_name='COPEPOD海洋生物数据集',
-#                      data_set_size='103M',
-#                      data_set_time_frame='1998年至2019年',
-#                      data_set_loc='南海至北海道',
-#                      data_set_abstract='数据介绍',
-#                      data_set_source='美国国家海洋渔业中心海岸带与海洋浮游生态、生产和观测数据库。',
-#                      )
-#     db.session.add(Marine_hydrology1)
+#     hydrology_data1 = Hydrology_data(
+#                      data_route='/static/upload_file/201812002.txt',
+#                      data_name='201812002',
+#                      data_time='2019-04-05 16:21:41',
+#                      data_format='.txt',
+#                      data_kind='波浪和风场数据',
+#                      data_refresh='月更新',
+#                     )
+#     db.session.add(hydrology_data1)
 #     # 事务
 #     db.session.commit()
 #     return render_template('base.html', title_name='海洋数据平台')
@@ -168,31 +168,29 @@ def marine_hydrology(page, state):
         }
         return render_template('marine_hydrology.html', **context)
 
+
+# 海洋水文单个数据展示页面
+@app.route('/hydrology_one/<marine_hydrology_id>/', methods=['GET', 'POST'])
+def hydrology_one(marine_hydrology_id):
+    # 如果是正常的加载当前页面
+    if request.method == 'GET':
+        marine_hydrology_one = Marine_hydrology.query.filter(Marine_hydrology.id == marine_hydrology_id).first()
+        # 根据数据集的归属类型，查询到所有属于本数据集的所有数据
+        print(marine_hydrology_one.data_set_name)
+        hydrology_data = Hydrology_data.query.filter(
+            Hydrology_data.data_kind == marine_hydrology_one.data_set_name).all()
+        context = {
+            'marine_hydrology_one': marine_hydrology_one,
+            'hydrology_datas': hydrology_data
+        }
+        return render_template('marine_hydrology_one.html', **context)
+
+
 # 装饰函数，运行在最前面
 @app.before_request
 def before_request():
     myglobal.set_value("")
 
-# 海洋水文数据集分页功能页面
-# @app.route('/marine_hydrology/list/<int:page>', methods=['GET'])
-# def hydrology_list_page(page=None):
-#     if page is None:
-#         page = 1
-#     page_data = Marine_hydrology.query.order_by('id').paginate(page=1, per_page=2)
-#     context = {
-#         'marine_hydrologys': page_data
-#     }
-#     return render_template('marine_hydrology_page.html', page_data)
 
-# @app.route('/form',methods = ['GET','POST'])
-# def hello_form():
-#     if request.method == 'POST':
-#      name = request.form.get('name')
-#      print(name)_
-#      return render_template('post_test.html', name=name)
-#     else:
-#      return render_template('post_test.html')
-
-
-if __name__ == '__main__':
+if __name__=='__main__':
     app.run()
