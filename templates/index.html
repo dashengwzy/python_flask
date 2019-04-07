@@ -162,33 +162,11 @@
                     </div>
 {#                    <div class="panel-body"></div>#}
                             <ul class="list-group">
-                              <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                               [公告]关于数字海洋实验室开放基金评...
-                              </li>
-                              <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                [新闻]国家海洋科学数据共享服务平台...
-                              </li> <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                [新闻]国家海洋科学数据共享服务平台...
-                              </li> <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                [公告]国家海洋局数字海洋科学技术重...
-                              </li> <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                [新闻]国家海洋科学数据共享服务平台...
-                              </li>
+                                  {% for article in articles %}
+                                      <li class="list-group-item">
+                                         [{{ article.type }}] {{ article.title }}...
+                                      </li>
+                                  {% endfor %}
                             </ul>
                   <div class="panel-footer footer_more text-right text-info"><a href="#" class="btn-link" >查看更多>></a></div>
                </div>

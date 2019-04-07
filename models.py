@@ -108,3 +108,20 @@ class Hydrology_data(db.Model):
     uid_hydrology = db.Column(db.Integer, db.ForeignKey("marine_hydrology.id"))
     # 定义海洋水文数据及表格本身的下载次数
     down_time = db.Column(db.Integer, nullable=False)
+
+
+# 创建海洋水文数据集表格对象，然后利用manage插件将模型映射到数据库的表当中
+class Article(db.Model):
+    __tablename__ = 'article'
+    # 资讯动态主键ID
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # 资讯动态标题
+    title = db.Column(db.String(100), nullable=False)
+    # 资讯动态所属分类
+    type = db.Column(db.String(100),  nullable=False)
+    # 资讯动态发布时间
+    time = db.Column(db.DateTime, nullable=False)
+    # 资讯动态来源
+    source = db.Column(db.Text, nullable=False)
+    # 资讯动态正文
+    content = db.Column(db.Text, nullable=False)

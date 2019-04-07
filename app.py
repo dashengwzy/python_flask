@@ -7,6 +7,7 @@ from models import Marine_organism
 from models import Organism_data
 from models import Marine_hydrology
 from models import Hydrology_data
+from models import Article
 import config
 import os
 import myglobal
@@ -92,10 +93,17 @@ def index():
     data_all_new.sort(key=cmpfun_new)  # 根据配置进行排序
     cmpfun_down = operator.attrgetter('down_time')  # 参数为排序依据的属性，根据下载次数进行排序
     data_all_down.sort(key=cmpfun_down, reverse=True)  # 根据配置进行排序
+    articles = Article.query.order_by('id').all()
+    # 对过长的标题进行一些处理
+    for article in articles:
+        if len(article.title) > 18:
+            num_str_1 = article.title[0:17]
+            article.title = num_str_1
     context = {
         'banners': Banner.query.order_by('id').all(),
         'data_all_new': data_all_new,
-        'data_all_down': data_all_down
+        'data_all_down': data_all_down,
+        'articles': articles
     }
     return render_template('index.html', **context)
 
