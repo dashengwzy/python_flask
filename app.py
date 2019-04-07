@@ -79,17 +79,23 @@ def index():
     # 查询所有存放数据的表，每个表中的数据按照时间排列进存储在变量之中
     # 需要存储的是这个信息属于哪个表，id是什么，数据名称是什么，方便展示和跳转
     # data_all用来存储所有的数据信息，将来用传到前台用来展示
-    data_all = []
+    data_all_new = []
+    data_all_down = []
     marine_organisms = Organism_data.query.order_by('id').all()
     marine_hydrologys = Hydrology_data.query.order_by('id').all()
-    data_all = data_all + marine_hydrologys
-    data_all = data_all + marine_organisms
+    data_all_new = data_all_new + marine_hydrologys
+    data_all_new = data_all_new + marine_organisms
+    data_all_down = data_all_new.copy()
+    # print(data_all_down.__len__())
     # 划重点#划重点#划重点----排序操作
-    cmpfun = operator.attrgetter('data_time')  # 参数为排序依据的属性，可以有多个，这里优先data_time，使用时按需求改换参数即可
-    data_all.sort(key=cmpfun)  # 使用时改变列表名即可
+    cmpfun_new = operator.attrgetter('data_time')  # 参数为排序依据的属性，根据上传时间进行排序
+    data_all_new.sort(key=cmpfun_new)  # 根据配置进行排序
+    cmpfun_down = operator.attrgetter('down_time')  # 参数为排序依据的属性，根据下载次数进行排序
+    data_all_down.sort(key=cmpfun_down, reverse=True)  # 根据配置进行排序
     context = {
         'banners': Banner.query.order_by('id').all(),
-        'data_all': data_all
+        'data_all_new': data_all_new,
+        'data_all_down': data_all_down
     }
     return render_template('index.html', **context)
 
