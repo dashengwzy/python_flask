@@ -164,7 +164,9 @@
                             <ul class="list-group">
                                   {% for article in articles %}
                                       <li class="list-group-item">
-                                         [{{ article.type }}] {{ article.title }}...
+                                            <a href="{{ url_for('article',article_id=1 ) }}">
+                                                 [{{ article.type }}] {{ article.title }}...
+                                            </a>
                                       </li>
                                   {% endfor %}
                             </ul>

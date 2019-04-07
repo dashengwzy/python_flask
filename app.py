@@ -60,13 +60,12 @@ def show(name):
 # def base():
 #     # 增加数据
 #     # 增加：
-#     organism_data1 = Organism_data(
-#                      data_route='/static/upload_file/15-COPEPOD-.xlsx',
-#                      data_name='13-COPEPOD-浮游细菌数据',
-#                      data_time='2019-04-05 16:21:41',
-#                      data_format='.xlsx',
-#                      data_kind='中国COPEPOD海洋生物数据集',
-#                      data_refresh='月更新',
+#     organism_data1 = Article(
+#                      title='国家海洋科学数据共享服务平台走进校园暨第六届“共享杯”大学生创新大赛系列宣讲活动',
+#                      type='公告',
+#                      time='2019-04-05 16:21:41',
+#                      source='国家海洋信息中心',
+#                      content='中国COPEPOD海洋生物数据集',
 #                     )
 #     db.session.add(organism_data1)
 #     # 事务
@@ -93,7 +92,8 @@ def index():
     data_all_new.sort(key=cmpfun_new)  # 根据配置进行排序
     cmpfun_down = operator.attrgetter('down_time')  # 参数为排序依据的属性，根据下载次数进行排序
     data_all_down.sort(key=cmpfun_down, reverse=True)  # 根据配置进行排序
-    articles = Article.query.order_by('id').all()
+    # 查询结果限制在5条内容
+    articles = Article.query.order_by('id').limit(5).all()
     # 对过长的标题进行一些处理
     for article in articles:
         if len(article.title) > 18:
@@ -228,9 +228,22 @@ def hydrology_one(marine_hydrology_id):
         }
         return render_template('marine_hydrology_one.html', **context)
 
+
+# 资讯详情页面
+@app.route('/article_one/<article_id>/', methods=['GET', 'POST'])
+def article_one(article_id):
+    article = Article.query.filter(Article.id == article_id).first()
+    context = {
+        'article': article,
+    }
+    return render_template('article_one.html', **context)
+
+
+
 # 装饰函数，运行在最前面
 @app.before_request
 def before_request():
+    # 初始化全局变量
     myglobal.set_value("")
 
 

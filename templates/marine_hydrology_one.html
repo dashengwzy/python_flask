@@ -10,7 +10,9 @@
 
 {% block main %}
 {#        页面主体的所有内容都放在下面的container里面#}
+{#    下面这个div不要给他对齐，否则会出错#}
   <div class="container marketing bottom_panel" >
+
 {#            顶部标题#}
       <div class="page-header">
               <h1>海洋水文数据集</h1>
@@ -21,6 +23,7 @@
               <li><a href="http://127.0.0.1:5000/marine_hydrology/list/1/1">海洋水文</a></li>
               <li><a href="">{{ marine_hydrology_one.data_set_name }}</a></li>
             </ol>
+
 
 {#        单个数据集相关内容的展示页面#}
         <div class="row panel_bottom">
