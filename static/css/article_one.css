@@ -1,0 +1,19 @@
+.bottom_panel{
+    background-color: #ffffff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius:4px;
+    margin-top: 8rem;
+}
+/*去掉面包屑before样式中的斜杠*/
+.breadcrumb :before{
+    display: none;
+}
+.breadcrumb li{
+    margin-right: 25px;
+}
+.page-header{
+    padding-bottom: 9px;
+    margin: 40px 14px 20px;
+    border-bottom: 1px solid #eee;
+}
