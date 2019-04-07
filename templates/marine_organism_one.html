@@ -92,12 +92,12 @@
                                {% for organism_data in organism_datas %}
                                    <tr>
                                       <th scope="row">{{ loop.index }}</th>
-                                      <td>{{ organism_data.organism_data_name }}</td>
-                                      <td>{{ organism_data.organism_data_time }}</td>
-                                      <td>{{ organism_data.organism_data_format  }}</td>
+                                      <td>{{ organism_data.data_name }}</td>
+                                      <td>{{ organism_data.data_time }}</td>
+                                      <td>{{ organism_data.data_format  }}</td>
                                       <td>
                                            <button type="button" class="btn btn-default btn-xs" >
-                                               <a  class="download_a_none" href="{{ url_for('organism_one_download',filename=organism_data.organism_data_name+organism_data.organism_data_format ) }}">
+                                               <a  class="download_a_none" href="{{ url_for('organism_one_download',filename=organism_data.data_name+organism_data.data_format ) }}">
                                                    下载
                                                </a>
                                            </button>

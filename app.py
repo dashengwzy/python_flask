@@ -57,15 +57,15 @@ def show(name):
 # def base():
 #     # 增加数据
 #     # 增加：
-#     hydrology_data1 = Hydrology_data(
-#                      data_route='/static/upload_file/201812002.txt',
-#                      data_name='201812002',
+#     organism_data1 = Organism_data(
+#                      data_route='/static/upload_file/15-COPEPOD-.xlsx',
+#                      data_name='13-COPEPOD-浮游细菌数据',
 #                      data_time='2019-04-05 16:21:41',
-#                      data_format='.txt',
-#                      data_kind='波浪和风场数据',
+#                      data_format='.xlsx',
+#                      data_kind='中国COPEPOD海洋生物数据集',
 #                      data_refresh='月更新',
 #                     )
-#     db.session.add(hydrology_data1)
+#     db.session.add(organism_data1)
 #     # 事务
 #     db.session.commit()
 #     return render_template('base.html', title_name='海洋数据平台')
@@ -73,6 +73,8 @@ def show(name):
 
 @app.route('/index')
 def index():
+    # 查询最新上传的数据放到首页的面板内
+
     context = {
         'banners': Banner.query.order_by('id').all()
     }
@@ -105,7 +107,7 @@ def organism_one(marine_organism_id):
     if request.method == 'GET':
         marine_organism_one = Marine_organism.query.filter(Marine_organism.id == marine_organism_id).first()
         # 根据数据集的归属类型，查询到所有属于本数据集的所有数据
-        organism_data = Organism_data.query.filter(Organism_data.organism_data_kind == marine_organism_one.data_set_name).all()
+        organism_data = Organism_data.query.filter(Organism_data.data_kind == marine_organism_one.data_set_name).all()
         context = {
             'marine_organism_one': marine_organism_one,
             'organism_datas': organism_data
@@ -118,7 +120,7 @@ def organism_one(marine_organism_id):
         # 将关键字拼接成模糊字段
         args = '%' + key_word + '%'
         marine_organism_one = Marine_organism.query.filter(Marine_organism.id == marine_organism_id).first()
-        organism_datas = Organism_data.query.filter(Organism_data.organism_data_name.like(args)).all()
+        organism_datas = Organism_data.query.filter(Organism_data.data_name.like(args)).all()
         context = {
             'marine_organism_one': marine_organism_one,
             'organism_datas': organism_datas

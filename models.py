@@ -50,15 +50,17 @@ class Organism_data(db.Model):
     # 海洋生物数据集表格的主键ID
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     # 海洋生物数据集表格数据本身在文件夹存储的位置
-    organism_data_route = db.Column(db.String(100), nullable=False)
+    data_route = db.Column(db.String(100), nullable=False)
     # 海洋生物数据集表格数据名称
-    organism_data_name = db.Column(db.String(100),  nullable=False)
+    data_name = db.Column(db.String(100),  nullable=False)
     # 海洋生物数据集上传时间
-    organism_data_time = db.Column(db.DateTime, nullable=False)
+    data_time = db.Column(db.DateTime, nullable=False)
     # 海洋生物数据集数据格式
-    organism_data_format = db.Column(db.String(100), nullable=False)
+    data_format = db.Column(db.String(100), nullable=False)
     # 海洋生物数据集表格所属门类
-    organism_data_kind = db.Column(db.String(100), nullable=False)
+    data_kind = db.Column(db.String(100), nullable=False)
+    # 海洋生物数据集表格所属门类
+    data_refresh = db.Column(db.String(100), nullable=False)
 
 
 # 创建海洋水文数据集模型，然后利用manage插件将模型映射到数据库的表当中
