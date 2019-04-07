@@ -61,7 +61,8 @@ class Organism_data(db.Model):
     data_kind = db.Column(db.String(100), nullable=False)
     # 海洋生物数据集表格所属门类
     data_refresh = db.Column(db.String(100), nullable=False)
-
+    # 定义海洋生物到海洋生物数据集表格对象的外键
+    uid_organism = db.Column(db.Integer, db.ForeignKey("marine_organism.id"))
 
 # 创建海洋水文数据集模型，然后利用manage插件将模型映射到数据库的表当中
 class Marine_hydrology(db.Model):
@@ -101,3 +102,5 @@ class Hydrology_data(db.Model):
     data_kind = db.Column(db.String(100), nullable=False)
     # 海洋水文数据集表格更新频率
     data_refresh = db.Column(db.String(100), nullable=False)
+    # 定义海洋水文到海洋水文数据集表格对象的外键
+    uid_hydrology = db.Column(db.Integer, db.ForeignKey("marine_hydrology.id"))

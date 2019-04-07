@@ -10,6 +10,8 @@ from models import Hydrology_data
 import config
 import os
 import myglobal
+# 排序操作需要引入
+import operator
 
 
 app = Flask(__name__)
@@ -74,9 +76,20 @@ def show(name):
 @app.route('/index')
 def index():
     # 查询最新上传的数据放到首页的面板内
-
+    # 查询所有存放数据的表，每个表中的数据按照时间排列进存储在变量之中
+    # 需要存储的是这个信息属于哪个表，id是什么，数据名称是什么，方便展示和跳转
+    # data_all用来存储所有的数据信息，将来用传到前台用来展示
+    data_all = []
+    marine_organisms = Organism_data.query.order_by('id').all()
+    marine_hydrologys = Hydrology_data.query.order_by('id').all()
+    data_all = data_all + marine_hydrologys
+    data_all = data_all + marine_organisms
+    # 划重点#划重点#划重点----排序操作
+    cmpfun = operator.attrgetter('data_time')  # 参数为排序依据的属性，可以有多个，这里优先data_time，使用时按需求改换参数即可
+    data_all.sort(key=cmpfun)  # 使用时改变列表名即可
     context = {
-        'banners': Banner.query.order_by('id').all()
+        'banners': Banner.query.order_by('id').all(),
+        'data_all': data_all
     }
     return render_template('index.html', **context)
 
@@ -129,9 +142,9 @@ def organism_one(marine_organism_id):
 
 
 # 如果点击的是下载按钮，则进行文件下载
-@app.route('/organism_one_download/file_name:<filename>', methods=['GET', 'POST'])
-def organism_one_download(filename):
-        print(filename)
+@app.route('/download/file_name:<filename>', methods=['GET', 'POST'])
+def download(filename):
+        # print(filename)
         if os.path.isfile(os.path.join('static/upload_file', filename)):
             return send_from_directory('static/upload_file', filename, as_attachment=True)
         abort(404)
@@ -152,7 +165,6 @@ def marine_hydrology(page, state):
         # 获取用户输入的关键字
         # search和分页不能同时实现的原因在于，search第二次分页因为走得是第一条路，所以数据不一样了。先不考虑直接点击按钮的问题
         key_word = request.form.get('hydrology_key_word')
-        print(key_word)
         if key_word is None or key_word is "":
                 key_word = myglobal.get_value()
                 # 将关键字拼接成模糊字段
@@ -178,7 +190,7 @@ def hydrology_one(marine_hydrology_id):
     if request.method == 'GET':
         marine_hydrology_one = Marine_hydrology.query.filter(Marine_hydrology.id == marine_hydrology_id).first()
         # 根据数据集的归属类型，查询到所有属于本数据集的所有数据
-        print(marine_hydrology_one.data_set_name)
+        # print(marine_hydrology_one.data_set_name)
         hydrology_datas = Hydrology_data.query.filter(
         Hydrology_data.data_kind == marine_hydrology_one.data_set_name).all()
         context = {

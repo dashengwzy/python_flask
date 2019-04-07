@@ -97,7 +97,7 @@
                                       <td>{{ organism_data.data_format  }}</td>
                                       <td>
                                            <button type="button" class="btn btn-default btn-xs" >
-                                               <a  class="download_a_none" href="{{ url_for('organism_one_download',filename=organism_data.data_name+organism_data.data_format ) }}">
+                                               <a  class="download_a_none" href="{{ url_for('download',filename=organism_data.data_name+organism_data.data_format ) }}">
                                                    下载
                                                </a>
                                            </button>

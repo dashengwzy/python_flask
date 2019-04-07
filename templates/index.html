@@ -98,33 +98,26 @@
                     </div>
 {#                    <div class="panel-body"></div>#}
                             <ul class="list-group">
-                              <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                实况分析数据-地转流
-                              </li>
-                              <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                实况分析数据-温度
-                              </li> <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                               实况分析数据-声速
-                              </li> <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                实况分析数据-盐度
-                              </li> <li class="list-group-item">
-                                <span >
-                                    <img src="/static/images/down_icon.png" class="down_icon">
-                                </span>
-                                实况分析数据-密度
-                              </li>
+                                 {% for data in data_all %}
+                                     {% if loop.index < 6 %}
+                                          <li class="list-group-item">
+                                            <span >
+                                                <a href="{{ url_for('download',filename=data.data_name+data.data_format ) }}">
+                                                    <img src="/static/images/down_icon.png" class="down_icon">
+                                                </a>
+                                            </span>
+{#                                         因为需要展示更新的数据文件所在的数据集，所以拿到数据文件的id需要反查所在数据集的id，传到页面进行跳转#}
+{#                                            根据查到数据的表名不同跳转到不同的链接，一个跳转到水文的总展示页，一个调到生物的总展示页#}
+                                              {% if data.__tablename__ == "organism_data" %}
+                                                  <a href="{{ url_for('organism_one',marine_organism_id=data.uid_organism ) }}">
+                                                {% elif data.__tablename__ == "hydrology_data" %}
+                                                  <a href="{{ url_for('hydrology_one',marine_hydrology_id=data.uid_hydrology ) }}">
+                                              {% endif %}
+                                                {{ data.data_name }}
+                                                  </a>
+                                          </li>
+                                     {% endif %}
+                                 {% endfor %}
                             </ul>
                    <div class="panel-footer footer_more text-right text-info"><a href="#" class="btn-link" >查看更多>></a></div>
                </div>
@@ -211,23 +204,6 @@
           </div>
         </div>
     </div><!-- /.bs-example -->
-
-      <div class="bs-example" data-example-id="list-group-badges">
-    <ul class="list-group">
-      <li class="list-group-item">
-        <span class="badge">14</span>
-        Cras justo odio
-      </li>
-      <li class="list-group-item">
-        <span class="badge">2</span>
-        Dapibus ac facilisis in
-      </li>
-      <li class="list-group-item">
-        <span class="badge">1</span>
-        Morbi leo risus
-      </li>
-    </ul>
-  </div>
 
     </div>
 {% endblock %}
