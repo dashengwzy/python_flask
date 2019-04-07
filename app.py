@@ -177,14 +177,28 @@ def hydrology_one(marine_hydrology_id):
         marine_hydrology_one = Marine_hydrology.query.filter(Marine_hydrology.id == marine_hydrology_id).first()
         # 根据数据集的归属类型，查询到所有属于本数据集的所有数据
         print(marine_hydrology_one.data_set_name)
-        hydrology_data = Hydrology_data.query.filter(
-            Hydrology_data.data_kind == marine_hydrology_one.data_set_name).all()
+        hydrology_datas = Hydrology_data.query.filter(
+        Hydrology_data.data_kind == marine_hydrology_one.data_set_name).all()
         context = {
             'marine_hydrology_one': marine_hydrology_one,
-            'hydrology_datas': hydrology_data
+            'hydrology_datas': hydrology_datas
+        }
+        # for index,hydrology_data in enumerate(hydrology_datas):  # 第二个实例
+        # print(len(hydrology_datas))
+        return render_template('marine_hydrology_one.html', **context)
+    # 如果是从当前页面获取数据进行进一步操作
+    else:
+        # 获取用户输入的关键字
+        hy_key_word = request.form.get('hy_key_word')
+        # 将关键字拼接成模糊字段
+        args = '%' + hy_key_word + '%'
+        marine_hydrology_one = Marine_hydrology.query.filter(Marine_hydrology.id == marine_hydrology_id).first()
+        hydrology_datas = Hydrology_data.query.filter(Hydrology_data.data_name.like(args)).all()
+        context = {
+            'marine_hydrology_one': marine_hydrology_one,
+            'hydrology_datas': hydrology_datas
         }
         return render_template('marine_hydrology_one.html', **context)
-
 
 # 装饰函数，运行在最前面
 @app.before_request

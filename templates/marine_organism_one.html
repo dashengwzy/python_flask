@@ -91,7 +91,7 @@
 {#                              循环将所有数据集展示出来#}
                                {% for organism_data in organism_datas %}
                                    <tr>
-                                      <th scope="row">{{ organism_data.id }}</th>
+                                      <th scope="row">{{ loop.index }}</th>
                                       <td>{{ organism_data.organism_data_name }}</td>
                                       <td>{{ organism_data.organism_data_time }}</td>
                                       <td>{{ organism_data.organism_data_format  }}</td>

@@ -18,7 +18,7 @@
             </div>
 {#            面包屑导航栏#}
             <ol class="breadcrumb">
-              <li><a href="http://127.0.0.1:5000/marine_organism">海洋水文</a></li>
+              <li><a href="http://127.0.0.1:5000/marine_hydrology/list/1/1">海洋水文</a></li>
               <li><a href="">{{ marine_hydrology_one.data_set_name }}</a></li>
             </ol>
 
@@ -71,7 +71,7 @@
                           <div class="form-group">
                                <label for="exampleInputName2">按数据名称检索：</label>
                               <div class="input-group">
-                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字" name="key_word">
+                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字" name="hy_key_word">
                               </div>
                           </div>
                           <button type="submit" class="btn btn-primary">查询</button>
@@ -91,7 +91,7 @@
 {#                              循环将所有数据集展示出来#}
                                {% for hydrology_data in hydrology_datas %}
                                    <tr>
-                                      <th scope="row">{{ hydrology_data.id }}</th>
+                                      <th scope="row">{{ loop.index}}</th>
                                       <td>{{ hydrology_data.data_name }}</td>
                                       <td>{{ hydrology_data.data_time }}</td>
                                       <td>{{ hydrology_data.data_format  }}</td>
