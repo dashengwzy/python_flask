@@ -153,7 +153,7 @@ def organism_one(marine_organism_id):
         # 将关键字拼接成模糊字段
         args = '%' + key_word + '%'
         marine_organism_one = Marine_organism.query.filter(Marine_organism.id == marine_organism_id).first()
-        organism_datas = Organism_data.query.filter(Organism_data.data_name.like(args)).all()
+        organism_datas = Organism_data.query.filter(Organism_data.data_name.like(args), Organism_data.data_kind == marine_organism_one.data_set_name).all()
         context = {
             'marine_organism_one': marine_organism_one,
             'organism_datas': organism_datas
@@ -227,7 +227,7 @@ def hydrology_one(marine_hydrology_id):
         # 将关键字拼接成模糊字段
         args = '%' + hy_key_word + '%'
         marine_hydrology_one = Marine_hydrology.query.filter(Marine_hydrology.id == marine_hydrology_id).first()
-        hydrology_datas = Hydrology_data.query.filter(Hydrology_data.data_name.like(args)).all()
+        hydrology_datas = Hydrology_data.query.filter(Hydrology_data.data_name.like(args), Hydrology_data.data_kind == marine_hydrology_one.data_set_name).all()
         context = {
             'marine_hydrology_one': marine_hydrology_one,
             'hydrology_datas': hydrology_datas
