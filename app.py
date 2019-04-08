@@ -8,6 +8,8 @@ from models import Organism_data
 from models import Marine_hydrology
 from models import Hydrology_data
 from models import Article
+from models import Chemistry_data
+from models import Marine_chemistry
 #引入Python中的jquery PyQuery库
 from pyquery import PyQuery as pq
 import config
@@ -62,14 +64,16 @@ def show(name):
 # def base():
 #     # 增加数据
 #     # 增加：
-#     organism_data1 = Article(
-#                      title='国家海洋科学数据共享服务平台走进校园暨第六届“共享杯”大学生创新大赛系列宣讲活动',
-#                      type='公告',
-#                      time='2019-04-05 16:21:41',
-#                      source='国家海洋信息中心',
-#                      content='中国COPEPOD海洋生物数据集',
+#     Chemistry_data1 = Chemistry_data(
+#                      data_route='/static/upload_file/OSDO2012-2017.csv',
+#                      data_name='OSDO2012-2017',
+#                      down_time='0',
+#                      data_format='.csv',
+#                      data_kind='WOD计划数据集',
+#                      data_refresh='年更新',
+#                      uid_hydrology=1,
 #                     )
-#     db.session.add(organism_data1)
+#     db.session.add(Chemistry_data1)
 #     # 事务
 #     db.session.commit()
 #     return render_template('base.html', title_name='海洋数据平台')
@@ -230,6 +234,69 @@ def hydrology_one(marine_hydrology_id):
         }
         return render_template('marine_hydrology_one.html', **context)
 
+
+# 海洋化学数据集总展示页面
+@app.route('/marine_chemistry/list/<int:page>/<int:state>', methods=['GET', 'POST'])
+def marine_chemistry(page, state):
+    if request.method == 'GET' and state == 0:
+        if page is None:
+            page = 1
+        context = {
+            'marine_chemistrys': Marine_chemistry.query.order_by('id').paginate(page=page, per_page=8),
+            'state': 0
+        }
+        return render_template('marine_chemistry.html', **context)
+    else:
+        # 获取用户输入的关键字
+        # search和分页不能同时实现的原因在于，search第二次分页因为走得是第一条路，所以数据不一样了。先不考虑直接点击按钮的问题
+        key_word = request.form.get('chdrology_key_word')
+        if key_word is None or key_word is "":
+                key_word = myglobal.get_value()
+                # 将关键字拼接成模糊字段
+                args = '%' + key_word + '%'
+        else:
+            myglobal.set_value(key_word)
+            # 将关键字拼接成模糊字段
+            args = '%' + myglobal.get_value() + '%'
+        marine_chemistry_search = Marine_chemistry.query.filter(
+            Marine_chemistry.data_set_name.like(args)
+        ).paginate(page=page, per_page=8)
+        context = {
+            'marine_chemistrys': marine_chemistry_search,
+            'state': 1
+        }
+        return render_template('marine_chemistry.html', **context)
+
+
+# 海洋化学单个数据展示页面
+@app.route('/chemistry_one/<marine_chemistry_id>/', methods=['GET', 'POST'])
+def chemistry_one(marine_chemistry_id):
+    # 如果是正常的加载当前页面
+    if request.method == 'GET':
+        marine_chemistry_one = Marine_chemistry.query.filter(Marine_chemistry.id == marine_chemistry_id).first()
+        # 根据数据集的归属类型，查询到所有属于本数据集的所有数据
+        chemistry_datas = Chemistry_data.query.filter(
+            Chemistry_data.data_kind == marine_chemistry_one.data_set_name).all()
+        context = {
+            'marine_chemistry_one': marine_chemistry_one,
+            'chemistry_datas': chemistry_datas
+        }
+        print(chemistry_datas)
+        return render_template('marine_chemistry_one.html', **context)
+    # 如果是从当前页面获取数据进行进一步操作
+    else:
+        marine_chemistry_one = Marine_chemistry.query.filter(Marine_chemistry.id == marine_chemistry_id).first()
+        # 获取用户输入的关键字
+        ch_key_word = request.form.get('ch_key_word')
+        # 将关键字拼接成模糊字段
+        args = '%' + ch_key_word + '%'
+        marine_chemistry_one = Marine_chemistry.query.filter(Marine_chemistry.id == marine_chemistry_id).first()
+        chemistry_datas = Chemistry_data.query.filter(Chemistry_data.data_name.like(args), Chemistry_data.data_kind == marine_chemistry_one.data_set_name).all()
+        context = {
+            'marine_chemistry_one': marine_chemistry_one,
+            'chemistry_datas': chemistry_datas
+        }
+        return render_template('marine_chemistry_one.html', **context)
 
 # 资讯详情页面
 @app.route('/article_one/<article_id>/', methods=['GET', 'POST'])
