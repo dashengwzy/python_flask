@@ -8,6 +8,8 @@ from models import Organism_data
 from models import Marine_hydrology
 from models import Hydrology_data
 from models import Article
+#引入Python中的jquery PyQuery库
+from pyquery import PyQuery as pq
 import config
 import os
 import myglobal
@@ -236,6 +238,7 @@ def article_one(article_id):
     context = {
         'article': article,
     }
+    d = pq("<html><title>hello</title></html>")
     return render_template('article_one.html', **context)
 
 

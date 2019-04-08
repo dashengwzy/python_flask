@@ -1,6 +1,7 @@
 #专门用来定义数据模型
 
 from exts import db
+from datetime import datetime
 
 # 创建banner模型，然后要将模型映射到数据库的表当中
 class Banner(db.Model):
@@ -54,7 +55,7 @@ class Organism_data(db.Model):
     # 海洋生物数据集表格数据名称
     data_name = db.Column(db.String(100),  nullable=False)
     # 海洋生物数据集上传时间
-    data_time = db.Column(db.DateTime, nullable=False)
+    data_time = db.Column(db.DateTime, nullable=False, default=datetime.now)
     # 海洋生物数据集数据格式
     data_format = db.Column(db.String(100), nullable=False)
     # 海洋生物数据集表格所属门类
@@ -97,7 +98,7 @@ class Hydrology_data(db.Model):
     # 海洋水文数据集表格数据名称
     data_name = db.Column(db.String(100),  nullable=False)
     # 海洋水文数据集上传时间
-    data_time = db.Column(db.DateTime, nullable=False)
+    data_time = db.Column(db.DateTime, nullable=False, default=datetime.now)
     # 海洋水文数据集数据格式
     data_format = db.Column(db.String(100), nullable=False)
     # 海洋水文数据集表格所属门类
@@ -120,7 +121,9 @@ class Article(db.Model):
     # 资讯动态所属分类
     type = db.Column(db.String(100),  nullable=False)
     # 资讯动态发布时间
-    time = db.Column(db.DateTime, nullable=False)
+    # now()获取的是服务器第一次运行的时间
+    # now是每次创建一个模型时，都获取当前的时间。
+    time = db.Column(db.DateTime, nullable=False, default=datetime.now)
     # 资讯动态来源
     source = db.Column(db.Text, nullable=False)
     # 资讯动态正文

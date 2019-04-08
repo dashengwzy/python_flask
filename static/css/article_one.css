@@ -17,3 +17,7 @@
     margin: 40px 14px 20px;
     border-bottom: 1px solid #eee;
 }
+.content {
+    font-size: 16px;
+    padding: 5px;
+}

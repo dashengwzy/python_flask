@@ -20,8 +20,11 @@
               <li>发布来源：{{ article.source }}</li>
               <li>类型：{{ article.type }}</li>
             </ol>
+      <div class="content">
+              {{ article.content|safe }}
+      </div>
   </div>
-{#    {{ article.content }}#}
+
 {% endblock %}
 
 {#script资源文件#}
