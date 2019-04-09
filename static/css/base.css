@@ -1,3 +1,6 @@
+body a:hover{
+    text-decoration:none;
+}
 #web_bg{
   position:fixed;
   top: 0;
