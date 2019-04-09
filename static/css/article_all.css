@@ -1,0 +1,27 @@
+.article_search{
+    display: inline;
+    float: right;
+    font-size: 16px;
+    margin: 3px;
+}
+.search_font{
+    font-weight:normal;
+}
+.line{
+    display: block;
+    margin-bottom: 10px;
+}
+.line span{
+    margin-right: 10px;
+}
+.type_span{
+    padding: 0.3em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}

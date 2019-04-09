@@ -18,7 +18,7 @@
 {#            面包屑导航栏#}
             <ol class="breadcrumb">
               <li>发布来源：{{ article.source }}</li>
-              <li>类型：{{ article.type }}</li>
+              类型：<li class="label label-primary type_span">{{ article.type }}</li>
             </ol>
       <div class="content">
               {{ article.content|safe }}

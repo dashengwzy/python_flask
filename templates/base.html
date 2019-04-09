@@ -9,7 +9,7 @@
     <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
     <link href="{{ url_for('static',filename='css/carousel.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/bootstrap.css') }}" rel="stylesheet">
-{#    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">#}
+    <link href="{{bootstrap_find_resource('css/bootstrap.css', cdn='bootstrap')}}" rel="stylesheet">
     <link href="{{ url_for('static',filename='css/base.css') }}" rel="stylesheet">
     {% block head %}
     {% endblock %}
@@ -38,7 +38,7 @@
               <ul class="nav navbar-nav">
                 <li class="active index_active"><a href="{{ url_for('index') }}">首页</a></li>
                 <li class="data_active"><a href="/data">数据服务</a></li>
-                <li><a href="/IndexCollect">潮汐预报</a></li>
+                <li class="article_active"><a href="/article_all/list/1/1">资讯动态</a></li>
               </ul>
             </div>
           </div>

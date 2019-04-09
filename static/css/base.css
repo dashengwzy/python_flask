@@ -18,8 +18,10 @@
 
 .bottom_panel{
     background-color: #ffffff;
-    padding-top: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     border-radius:4px;
+    margin-top: 7rem;
 }
 .carousel_bottom{
     margin-bottom: 20px;
