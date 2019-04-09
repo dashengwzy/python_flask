@@ -21,7 +21,7 @@
                         {% if v != data.page %}
                             <li><a href="{{ url_for(url,page=v,state=state) }}">{{ v }}</a></li>
                         {% else %}
-                            <li class="active"><a href="{{ url_for(url,page=v,state=state) }}">{{ v }}</a></li>
+                            <li class="active"><a >{{ v }}</a></li>
                         {% endif %}
                     {% endif %}
               {% endfor %}

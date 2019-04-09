@@ -114,21 +114,35 @@ def index():
     return render_template('index.html', **context)
 
 
-@app.route('/marine_organism', methods=['GET', 'POST'])
-def marine_organism():
-    if request.method == 'GET':
+# 海洋生物数据集的总展示页面
+@app.route('/marine_organism/list/<int:page>/<int:state>', methods=['GET', 'POST'])
+def marine_organism(page, state):
+    if request.method == 'GET' and state == 0:
+        if page is None:
+            page = 1
         context = {
-            'marine_organisms': Marine_organism.query.order_by('id').all()
+            'marine_organisms': Marine_organism.query.order_by('id').paginate(page=page, per_page=8),
+            'state': 0
         }
         return render_template('marine_organism.html', **context)
     else:
         # 获取用户输入的关键字
-        key_word = request.form.get('key_word')
-        # 将关键字拼接成模糊字段
-        args = '%' + key_word + '%'
-        marine_organism_search = Marine_organism.query.filter(Marine_organism.data_set_name.like(args)).all()
+        # search和分页不能同时实现的原因在于，search第二次分页因为走得是第一条路，所以数据不一样了。先不考虑直接点击按钮的问题
+        key_word = request.form.get('organism_key_word')
+        if key_word is None or key_word is "":
+                key_word = myglobal.get_value()
+                # 将关键字拼接成模糊字段
+                args = '%' + key_word + '%'
+        else:
+            myglobal.set_value(key_word)
+            # 将关键字拼接成模糊字段
+            args = '%' + myglobal.get_value() + '%'
+        marine_organism_search = Marine_organism.query.filter(
+            Marine_organism.data_set_name.like(args)
+        ).paginate(page=page, per_page=8)
         context = {
-            'marine_organisms': marine_organism_search
+            'marine_organisms': marine_organism_search,
+            'state': 1
         }
         return render_template('marine_organism.html', **context)
 

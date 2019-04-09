@@ -1,5 +1,6 @@
 {#{% extends "bootstrap/base.html"  %}#}
 {% extends 'base.html' %}
+{% import "page.html" as pg%}
 {% block title %}
     海洋生物
 {% endblock %}
@@ -17,11 +18,11 @@
                 <p>海洋生物数据集覆盖美国近海、日本东部、爱尔兰、澳大利亚等海域，包括浮游动物、浮游植物、初级生产力、鱼类、贝类等数据。</p>
             </div>
 {#            根据输入条件搜索内容#}
-            <form class="form-inline" action="{{ url_for('marine_organism') }}" method="post">
+            <form class="form-inline" action="{{ url_for('marine_organism',page=1,state=1) }}" method="post">
               <div class="form-group">
                    <label for="exampleInputName2">关键字检索：</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字" name="key_word">
+                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字" name="organism_key_word">
                   </div>
               </div>
               <button type="submit" class="btn btn-primary">查询</button>
@@ -31,7 +32,7 @@
 {#        数据集的展示页面#}
         <div class="row panel_bottom">
 {#        循环展示数据块#}
-             {% for marine_organism in marine_organisms %}
+             {% for marine_organism in marine_organisms.items %}
           <div class="col-sm-6 col-md-6">
             {#            用面板将一个数据块装起来#}
             <div class="panel panel-default">
@@ -52,7 +53,10 @@
           </div>
              {% endfor %}
         </div>
+  {#数据集分页功能通过pg挂载page.html页面，引入分页控制器#}
+{{ pg.page(marine_organisms,'marine_organism',state) }}
   </div>
+
 {% endblock %}
 {#script资源文件#}
 {% block script %}
