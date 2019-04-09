@@ -91,13 +91,15 @@ def index():
     data_all_down = []
     marine_organisms = Organism_data.query.order_by('id').all()
     marine_hydrologys = Hydrology_data.query.order_by('id').all()
+    marine_chemistrys = Chemistry_data.query.order_by('id').all()
     data_all_new = data_all_new + marine_hydrologys
     data_all_new = data_all_new + marine_organisms
+    data_all_new = data_all_new + marine_chemistrys
     data_all_down = data_all_new.copy()
     # print(data_all_down.__len__())
     # 划重点#划重点#划重点----排序操作
     cmpfun_new = operator.attrgetter('data_time')  # 参数为排序依据的属性，根据上传时间进行排序
-    data_all_new.sort(key=cmpfun_new)  # 根据配置进行排序
+    data_all_new.sort(key=cmpfun_new, reverse=True)  # 根据配置进行排序
     cmpfun_down = operator.attrgetter('down_time')  # 参数为排序依据的属性，根据下载次数进行排序
     data_all_down.sort(key=cmpfun_down, reverse=True)  # 根据配置进行排序
     # 查询结果限制在5条内容

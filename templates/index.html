@@ -113,6 +113,8 @@
                                                   <a href="{{ url_for('organism_one',marine_organism_id=data.uid_organism ) }}">
                                                 {% elif data.__tablename__ == "hydrology_data" %}
                                                   <a href="{{ url_for('hydrology_one',marine_hydrology_id=data.uid_hydrology ) }}">
+                                                {% elif data.__tablename__ == "chemistry_data" %}
+                                                  <a href="{{ url_for('chemistry_one',marine_chemistry_id=data.uid_chemistry ) }}">
                                               {% endif %}
                                                 {{ data.data_name }}
                                                   </a>
@@ -145,6 +147,8 @@
                                                   <a href="{{ url_for('organism_one',marine_organism_id=data.uid_organism ) }}">
                                                 {% elif data.__tablename__ == "hydrology_data" %}
                                                   <a href="{{ url_for('hydrology_one',marine_hydrology_id=data.uid_hydrology ) }}">
+                                                   {% elif data.__tablename__ == "chemistry_data" %}
+                                                  <a href="{{ url_for('chemistry_one',marine_chemistry_id=data.uid_chemistry ) }}">
                                               {% endif %}
                                                 {{ data.data_name }}
                                                   </a>

@@ -154,6 +154,48 @@ class Chemistry_data(db.Model):
     # 定义化学水文数据及表格本身的下载次数
     down_time = db.Column(db.Integer, nullable=False)
 
+# # 创建实况分析数据集模型，然后利用manage插件将模型映射到数据库的表当中
+# class Marine_chemistry(db.Model):
+#     __tablename__ = 'marine_chemistry'
+#     # 实况分析图片的主键ID
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     # 实况分析数据集图片存放的路径
+#     route = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集名称
+#     data_set_name = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集大小
+#     data_set_size = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集来源
+#     data_set_source = db.Column(db.String(1000), nullable=False)
+#     # 实况分析数据集时间范围
+#     data_set_time_frame = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集空间位置
+#     data_set_loc = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集摘要
+#     data_set_abstract = db.Column(db.String(10000), nullable=False)
+#
+# # 创建实况分析数据集表格对象，然后利用manage插件将模型映射到数据库的表当中
+# class Chemistry_data(db.Model):
+#     __tablename__ = 'chemistry_data'
+#     # 实况分析数据集表格的主键ID
+#     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+#     # 实况分析数据集表格数据本身在文件夹存储的位置
+#     data_route = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集表格数据名称
+#     data_name = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集上传时间
+#     data_time = db.Column(db.DateTime, nullable=False, default=datetime.now)
+#     # 实况分析数据集数据格式
+#     data_format = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集表格所属门类
+#     data_kind = db.Column(db.String(100), nullable=False)
+#     # 实况分析数据集表格更新频率
+#     data_refresh = db.Column(db.String(100), nullable=False)
+#     # 实况分析水文到海洋水文数据集表格对象的外键
+#     uid_chemistry = db.Column(db.Integer, db.ForeignKey("marine_chemistry.id"))
+#     # 实况分析水文数据及表格本身的下载次数
+#     down_time = db.Column(db.Integer, nullable=False)
+
 
 # 创建资讯动态对象，然后利用manage插件将模型映射到数据库的表当中
 class Article(db.Model):
