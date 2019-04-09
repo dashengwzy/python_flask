@@ -298,6 +298,14 @@ def chemistry_one(marine_chemistry_id):
         }
         return render_template('marine_chemistry_one.html', **context)
 
+
+# 数据服务展示页面
+@app.route('/data', methods=['GET', 'POST'])
+def data():
+
+    return render_template('data.html')
+
+
 # 资讯详情页面
 @app.route('/article_one/<article_id>/', methods=['GET', 'POST'])
 def article_one(article_id):

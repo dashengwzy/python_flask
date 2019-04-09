@@ -1,0 +1,94 @@
+{#{% extends "bootstrap/base.html"  %}#}
+{% extends 'base.html' %}
+{% block title %}
+    数据服务
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="http://www.jq22.com/jquery/font-awesome.4.6.0.css">
+    <link href="{{ url_for('static',filename='css/data.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='css/bootstrap-grid.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{#页面主体内容#}
+{% block main %}
+{#    使用了一个网络的jquery动画，展示数据服务图片，点击跳转#}
+    <div class="container marketing bottom_panel" >
+		<div class="row">
+			  <div class="col-md-4 col-sm-6">
+			<div class="box"> <img src="/static/images/organism.jpg" alt="">
+				  <div class="box-content">
+				<h3 class="title">海洋生物</h3>
+				<span class="post">海洋生物数据集覆盖美国近海、日本东部、爱尔兰、澳大利亚等海域，包括浮游动物、浮游植物、初级生产力、鱼类、贝类等数据。</span> </div>
+				  <ul class="icon">
+				<li><a href="http://127.0.0.1:5000/marine_organism/list/1/0"><i class="fa fa-eye"></i></a></li>
+			  </ul>
+				</div>
+		  </div>
+			  <div class="col-md-4 col-sm-6">
+			<div class="box"> <img src="/static/images/hydrology.jpg" alt="">
+				  <div class="box-content">
+				<h3 class="title">海洋水文</h3>
+				<span class="post">通过台站、浮标、调查船等观测手段获取的海洋水文数据，覆盖全球海域，主要包括温度、盐度、波浪、水位及海流等要素。</span> </div>
+				  <ul class="icon">
+				<li><a href="http://127.0.0.1:5000/marine_hydrology/list/1/0"><i class="fa fa-eye"></i></a></li>
+			  </ul>
+				</div>
+		  </div>
+              <div class="col-md-4 col-sm-6">
+			<div class="box"> <img src="/static/images/banner3.png" alt="">
+				  <div class="box-content">
+				<h3 class="title">海洋化学</h3>
+				<span class="post">海洋化学数据集覆盖大西洋、太平洋等海域，包括溶解氧、PH值、碱度、硝酸盐、亚硝酸盐、重金属、悬浮物等海洋水质数据。</span> </div>
+				  <ul class="icon">
+				<li><a href="http://127.0.0.1:5000/marine_chemistry/list/1/0"><i class="fa fa-eye"></i></a></li>
+			  </ul>
+				</div>
+		  </div>
+              <div class="col-md-4 col-sm-6">
+			<div class="box"> <img src="/static/images/data4.jpg" alt="">
+				  <div class="box-content">
+				<h3 class="title">实况分析数据</h3>
+				<span class="post">西北太平洋实况分析产品的海区范围为99°E～150°E，10°S～52°N，产品要素包括：三维温度、盐度、密度、声速和地转流。</span> </div>
+				  <ul class="icon">
+				<li><a href="#"><i class="fa fa-eye"></i></a></li>
+			  </ul>
+				</div>
+		  </div>
+              <div class="col-md-4 col-sm-6">
+			<div class="box"> <img src="/static/images/data5.jpg" alt="">
+				  <div class="box-content">
+				<h3 class="title">再分析数据</h3>
+				<span class="post">西北太平洋再分析产品的海区范围为99°E～150°E、10°S～52°N，产品要素包括：海面高、温度、盐度。</span> </div>
+				  <ul class="icon">
+				<li><a href="#"><i class="fa fa-eye"></i></a></li>
+			  </ul>
+				</div>
+		  </div>
+              <div class="col-md-4 col-sm-6">
+			<div class="box"> <img src="/static/images/data6.jpg" alt="">
+				  <div class="box-content">
+				<h3 class="title">统计分析数据</h3>
+				<span class="post">统计分析数据的海区范围为100°E～170°E、0°N～50°N，产品要素包括海表温度、海面气温和海面气压。</span> </div>
+				  <ul class="icon">
+				<li><a href="#"><i class="fa fa-eye"></i></a></li>
+			  </ul>
+				</div>
+		  </div>
+			</div>
+    </div>
+{% endblock %}
+
+{#script资源文件#}
+{% block script %}
+    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
+    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script>
+        {#移除base.html顶部栏的index页面的选中效果，添加data页面的选中效果#}
+        $(".index_active").removeClass("active")
+        $(".data_active").attr("class", "active");
+    </script>
+{% endblock %}
