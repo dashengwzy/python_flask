@@ -16,3 +16,9 @@
 .see_data_btn{
     margin-left: 283px;
 }
+.shadow_panel:hover{
+    border: 1px solid #337AB7;
+    box-shadow: 0 0 8px #337AB7;
+    -moz-box-shadow: 0 0 8px #337AB7;
+    -webkit-box-shadow: 0 0 8px #337AB7;
+}
