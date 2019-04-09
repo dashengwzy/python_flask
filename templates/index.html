@@ -11,7 +11,8 @@
 {#页面主体内容#}
 {% block main %}
       <div id="myCarousel" class="carousel slide carousel_bottom" data-ride="carousel">
-      <!-- Indicators -->
+
+    <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -46,44 +47,45 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+          </div>
     <!-- /.carousel -->
 
     <div class="container marketing bottom_panel" >
     <div class="bs-example" data-example-id="thumbnails-with-custom-content">
         <div class="row">
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <img src="/static/images/now_data.jpg" alt="Generic placeholder thumbnail">
-              <div class="caption">
-                <h3>实况分析数据</h3>
-                <p>西北太平洋实况分析产品的海区范围为99°E～150°E，10°S～52°N，空间水平网格分辨率为0.125°，垂向为标准层。</p>
-                <p>产品要素包括：三维温度、盐度、密度、声速和地转流，更新频率为日更新。</p>
-                <p class="text-right"><a href="#" class="btn btn-default" role="button">查看数据</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <img src="/static/images/again_data.jpg" alt="Generic placeholder thumbnail">
-              <div class="caption">
-                <h3>再分析数据</h3>
-                <p>西北太平洋再分析产品的海区范围为99°E～150°E、10°S～52°N，空间水平网格分辨率为0.5°×0.5°、垂向为35层。</p>
-                  <p>产品要素包括：海面高、盐度和海流，时间范围为1958年1月至2017年12月，时间分辨率为月平均。</p>
-                <p class="text-right"><a href="#" class="btn btn-default" role="button">查看数据</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-              <img src="/static/images/statistics_data.jpg" alt="Generic placeholder thumbnail">
-              <div class="caption">
-                <h3>统计分析数据</h3>
-                <p>统计分析数据包括海洋温盐统计和海洋气象统计分析数据，海洋温盐统计数据时间范围为1981-2010年，包括累年月平均和累年季平均的不同层深数据。</p>
-                <p>产品要素包括：海表温度、海面气温和海面气压，空间分辨率为1°*1°，时间分辨率为累年逐月平均。</p>
-                <p class="text-right"><a href="#" class="btn btn-default" role="button">查看数据</a></p>
-              </div>
-            </div>
-          </div>
+{#          <div class="col-sm-6 col-md-4">#}
+{#            <div class="thumbnail">#}
+{#              <img src="/static/images/now_data.jpg" alt="Generic placeholder thumbnail">#}
+{#              <div class="caption">#}
+{#                <h3>实况分析数据</h3>#}
+{#                <p>西北太平洋实况分析产品的海区范围为99°E～150°E，10°S～52°N，空间水平网格分辨率为0.125°，垂向为标准层。</p>#}
+{#                <p>产品要素包括：三维温度、盐度、密度、声速和地转流，更新频率为日更新。</p>#}
+{#                <p class="text-right"><a href="#" class="btn btn-default" role="button">查看数据</a></p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="col-sm-6 col-md-4">#}
+{#            <div class="thumbnail">#}
+{#              <img src="/static/images/again_data.jpg" alt="Generic placeholder thumbnail">#}
+{#              <div class="caption">#}
+{#                <h3>再分析数据</h3>#}
+{#                <p>西北太平洋再分析产品的海区范围为99°E～150°E、10°S～52°N，空间水平网格分辨率为0.5°×0.5°、垂向为35层。</p>#}
+{#                  <p>产品要素包括：海面高、盐度和海流，时间范围为1958年1月至2017年12月，时间分辨率为月平均。</p>#}
+{#                <p class="text-right"><a href="#" class="btn btn-default" role="button">查看数据</a></p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#          <div class="col-sm-6 col-md-4">#}
+{#            <div class="thumbnail">#}
+{#              <img src="/static/images/statistics_data.jpg" alt="Generic placeholder thumbnail">#}
+{#              <div class="caption">#}
+{#                <h3>统计分析数据</h3>#}
+{#                <p>统计分析数据包括海洋温盐统计和海洋气象统计分析数据，海洋温盐统计数据时间范围为1981-2010年，包括累年月平均和累年季平均的不同层深数据。</p>#}
+{#                <p>产品要素包括：海表温度、海面气温和海面气压，空间分辨率为1°*1°，时间分辨率为累年逐月平均。</p>#}
+{#                <p class="text-right"><a href="#" class="btn btn-default" role="button">查看数据</a></p>#}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
         </div>
     </div><!-- /.bs-example -->
 
@@ -102,7 +104,7 @@
                                           <li class="list-group-item">
                                             <span >
                                                 <a href="{{ url_for('download',filename=data.data_name+data.data_format ) }}">
-                                                    <img src="/static/images/down_icon.png" class="down_icon">
+                                                    <img src="/static/images/download_no.png" class="down_icon" onMouseOver="this.src='/static/images/download_yes.png'" onMouseOut="this.src='/static/images/download_no.png'" />
                                                 </a>
                                             </span>
 {#                                         因为需要展示更新的数据文件所在的数据集，所以拿到数据文件的id需要反查所在数据集的id，传到页面进行跳转#}
@@ -134,7 +136,7 @@
                                           <li class="list-group-item">
                                             <span >
                                                 <a href="{{ url_for('download',filename=data.data_name+data.data_format ) }}">
-                                                    <img src="/static/images/down_icon.png" class="down_icon">
+                                                    <img src="/static/images/download_no.png" class="down_icon" onMouseOver="this.src='/static/images/download_yes.png'" onMouseOut="this.src='/static/images/download_no.png'" />
                                                 </a>
                                             </span>
 {#                                         因为需要展示更新的数据文件所在的数据集，所以拿到数据文件的id需要反查所在数据集的id，传到页面进行跳转#}
