@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94f492c5-9484-4e5f-a312-4b7f42098523" name="Default Changelist" comment="" />
+    <list default="true" id="94f492c5-9484-4e5f-a312-4b7f42098523" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/毕设.docx" beforeDir="false" afterPath="$PROJECT_DIR$/毕设.docx" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="232">
-              <caret line="193" column="29" lean-forward="true" selection-start-line="193" selection-start-column="29" selection-end-line="193" selection-end-column="29" />
+            <state relative-caret-position="362">
+              <caret line="192" column="13" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
               <folding>
                 <element signature="e#13#32#0" expanded="true" />
               </folding>
@@ -158,7 +161,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -170,6 +172,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,6 +259,8 @@
       <workItem from="1554806299472" duration="3660000" />
       <workItem from="1554822510035" duration="6762000" />
       <workItem from="1554896847245" duration="757000" />
+      <workItem from="1554950991702" duration="1924000" />
+      <workItem from="1555035689355" duration="234000" />
     </task>
     <task id="LOCAL-00001" summary="调整首页样式">
       <created>1554303203862</created>
@@ -544,11 +549,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554897122922</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="毕业设计版本1.1">
+      <created>1554951028612</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1554951028612</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216094000" />
+    <option name="totallyTimeSpent" value="218018000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -564,7 +576,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.18683812" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.19288956" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -641,7 +653,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="使用全局变量放在myblobal.py，实现了搜索框和分页功能的并举，但是搜索框不填写东西点击搜索时还有问题没有解决。" />
     <MESSAGE value="海洋水文数据集总展示页面搜索和分页的功能全部实现，两者不冲突，而且之间点击搜索按钮，就是所有的结果，不会报错。至此该页面功能前后端全部完成。" />
     <MESSAGE value="删除海洋生物数据集总展示页面的分页前端代码" />
     <MESSAGE value="海洋水文的数据表格页面后端可以抽取出来了，之前花了40分钟抽不出来，是因为表的列名建立的太长了，所以匹配相等时，无法找到字段，字段超出编译器范围。以后一定要注意！！！！！" />
@@ -666,7 +677,8 @@
     <MESSAGE value="修改最新数据功能，时间倒叙，海洋化学的数据比较" />
     <MESSAGE value="数据库用外键失败，导致库出现了很大问题，现在恢复之前的状态了。" />
     <MESSAGE value="毕业设计版本1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="毕业设计版本1.0" />
+    <MESSAGE value="毕业设计版本1.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="毕业设计版本1.1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/test1$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1554863036020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -939,8 +951,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="193" column="29" lean-forward="true" selection-start-line="193" selection-start-column="29" selection-end-line="193" selection-end-column="29" />
+        <state relative-caret-position="362">
+          <caret line="192" column="13" selection-start-line="192" selection-start-column="13" selection-end-line="192" selection-end-column="13" />
           <folding>
             <element signature="e#13#32#0" expanded="true" />
           </folding>
