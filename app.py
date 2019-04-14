@@ -1,25 +1,27 @@
-from flask import Flask, render_template, request, redirect, url_for, abort, send_from_directory, g
-from flask_uploads import UploadSet, IMAGES, configure_uploads, ALL
-from flask_bootstrap import Bootstrap
-from exts import db
-from models import Banner
-from models import Marine_organism
-from models import Organism_data
-from models import Marine_hydrology
-from models import Hydrology_data
-from models import Article
-from models import Chemistry_data
-from models import Marine_chemistry
-# 导入 bs4 库,创建 Beautiful Soup 对象,用来从html文本中提取文本内容
-from bs4 import BeautifulSoup
-#引入Python中的jquery PyQuery库
-from pyquery import PyQuery as pq
-import config
-import os
-import myglobal
 # 排序操作需要引入
 import operator
+import os
 
+# 导入 bs4 库,创建 Beautiful Soup 对象,用来从html文本中提取文本内容
+from bs4 import BeautifulSoup
+from flask import Flask, render_template, request, redirect, url_for, abort, send_from_directory
+from flask_bootstrap import Bootstrap
+from flask_uploads import UploadSet, configure_uploads
+# 引入Python中的jquery PyQuery库
+from pyquery import PyQuery as pq
+
+import config
+import myglobal
+from exts import db
+from models import Article
+from models import Banner
+from models import Chemistry_data
+from models import Hydrology_data
+from models import Marine_chemistry
+from models import Marine_hydrology
+from models import Marine_organism
+from models import Organism_data
+from models import User
 
 app = Flask(__name__)
 # 配置文件上传的路径以及限制条件
@@ -383,7 +385,55 @@ def article_one(article_id):
     return render_template('article_one.html', **context)
 
 
+# 登陆页面
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    # 如果是正常的加载当前页面
+    if request.method == 'GET':
+        return render_template('register.html')
+    # 如果是从当前页面获取数据进行进一步操作
+    else:
+        # 获取用户输入的用户名
+        username = request.form.get('username')
+        # 获取用户输入的密码
+        password = request.form.get('password')
+        # 获取用户输入的密码
+        organ = request.form.get('organ')
+        print(username)
+        print(password)
+        print(organ)
+        # 在数据库里面查找是否已经有该用户
+        User_if = User.query.filter(User.username == username).first()
+        print(User_if)
+        if User_if is None:
+            # 增加数据
+            # 增加：
+            user1 = User(
+                             organ=organ,
+                             username=username,
+                             password=password,
+                            )
+            db.session.add(user1)
+            # 事务
+            db.session.commit()
+            return render_template('login.html')
+        else:
+            # path = 'E:/test1/templates/register.html'
+            # htmlfile = open(path, 'r', encoding='utf-8')
+            # htmlhandle = htmlfile.read()
+            # soup = BeautifulSoup(htmlhandle, 'lxml')
+            # kk = soup.select('#alert_hide')[0]
+            # # del (kk['id'])
+            #
+            # kk['id'] = "alert_show"
 
+            return render_template('register_two.html')
+
+
+# 登陆页面
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    return render_template('login.html')
 
 
 # 装饰函数，运行在最前面

@@ -214,3 +214,16 @@ class Article(db.Model):
     source = db.Column(db.Text, nullable=False)
     # 资讯动态正文
     content = db.Column(db.Text, nullable=False)
+
+
+# 创建用户对象，然后利用manage插件将模型映射到数据库的表当中
+class User(db.Model):
+    __tablename__ = 'user'
+    # 用户主键ID
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    # 用户所属单位
+    organ = db.Column(db.String(100),  nullable=False)
+    # 用户名
+    username = db.Column(db.String(100), nullable=False)
+    # 用户密码
+    password = db.Column(db.String(100), nullable=False)
