@@ -399,12 +399,8 @@ def register():
         password = request.form.get('password')
         # 获取用户输入的密码
         organ = request.form.get('organ')
-        print(username)
-        print(password)
-        print(organ)
         # 在数据库里面查找是否已经有该用户
         User_if = User.query.filter(User.username == username).first()
-        print(User_if)
         if User_if is None:
             # 增加数据
             # 增加：
@@ -426,7 +422,6 @@ def register():
             # # del (kk['id'])
             #
             # kk['id'] = "alert_show"
-
             return render_template('register_two.html')
 
 
