@@ -430,7 +430,7 @@ def register():
             return render_template('register_two.html')
 
 
-# 登陆页面
+# 登录页面
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # 如果是正常的加载当前页面
