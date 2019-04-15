@@ -445,16 +445,6 @@ def login():
             session['user_id'] = user.id
             # 如果想在31天内都不需要登录
             session.permanent = True
-            # # 修改顶部栏的内容
-            # path = 'E:/test1/templates/base.html'
-            # htmlfile = open(path, 'r', encoding='utf-8')
-            # htmlhandle = htmlfile.read()
-            # soup = BeautifulSoup(htmlhandle, 'lxml')
-            # login_change = soup.find_all(id='login_change')
-            # print(login_change[0])
-            # del login_change[0]['id']
-            # login_change[0].string = "New link text."
-            # print(login_change)
             return redirect(url_for('index'))
         else:
             return render_template('login.html')
