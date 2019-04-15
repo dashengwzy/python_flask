@@ -383,10 +383,10 @@ def article_all(page, state):
 @app.route('/article_one/<article_id>/', methods=['GET', 'POST'])
 def article_one(article_id):
     article = Article.query.filter(Article.id == article_id).first()
+    print(article.content)
     context = {
         'article': article,
     }
-    d = pq("<html><title>hello</title></html>")
     return render_template('article_one.html', **context)
 
 
