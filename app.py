@@ -102,7 +102,7 @@ def index():
     data_all_new = data_all_new + marine_chemistrys
     data_all_down = data_all_new.copy()
     # print(data_all_down.__len__())
-    # 划重点#划重点#划重点----排序操作
+    # 数据排序操作
     cmpfun_new = operator.attrgetter('data_time')  # 参数为排序依据的属性，根据上传时间进行排序
     data_all_new.sort(key=cmpfun_new, reverse=True)  # 根据配置进行排序
     cmpfun_down = operator.attrgetter('down_time')  # 参数为排序依据的属性，根据下载次数进行排序
