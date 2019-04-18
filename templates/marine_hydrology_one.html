@@ -104,7 +104,7 @@
                                                    href="{{ url_for('download',
                                                    filename=hydrology_data.data_name
                                                    +
-                                                   hydrology_data.data_format
+                                                   hydrology_data.data_format,tablename=hydrology_data.__tablename__,id=hydrology_data.id
                                                    ) }}">
                                                    下载
                                                </a>

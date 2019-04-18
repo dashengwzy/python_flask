@@ -22,11 +22,12 @@ from models import Marine_hydrology
 from models import Marine_organism
 from models import Organism_data
 from models import User
-
+from datetime import timedelta
 app = Flask(__name__)
 # 配置文件上传的路径以及限制条件
 app.config['UPLOADED_PHOTO_DEST'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static\images")
 app.config['UPLOADED_PHOTO_ALLOW'] = ['png', 'jpg']
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 # 设置SECRET_KEY以使用session
 app.config.update(SECRET_KEY='123456')
 # 实例化 UploadSet 对象
@@ -186,9 +187,21 @@ def organism_one(marine_organism_id):
 
 
 # 如果点击的是下载按钮，则进行文件下载
-@app.route('/download/file_name:<filename>', methods=['GET', 'POST'])
-def download(filename):
-    # print(filename)
+@app.route('/download/file_name:<filename>/<string:tablename>/<int:id>', methods=['GET', 'POST'])
+def download(filename,tablename,id):
+    # 1. 先把你要更改的数据查找出来
+    if tablename == 'hydrology_data':
+        new1 = Hydrology_data.query.filter(Hydrology_data.id == id).first()
+    elif tablename == "chemistry_data":
+        new1 = Chemistry_data.query.filter(Chemistry_data.id == id).first()
+    else:
+        new1 = Organism_data.query.filter(Organism_data.id == id).first()
+    # # 2. 把这条数据，你需要修改的地方进行修改
+    newtime = new1.down_time + 1
+    new1.down_time = newtime
+    print(new1.down_time)
+    # # 3. 做事务的提交
+    db.session.commit()
     if os.path.isfile(os.path.join('static/upload_file', filename)):
         return send_from_directory('static/upload_file', filename, as_attachment=True)
     abort(404)
@@ -474,6 +487,7 @@ def my_context_processor():
     if hasattr(g, 'user'):
         return {'user': g.user}
     return {}
+
 
 
 if __name__ == '__main__':

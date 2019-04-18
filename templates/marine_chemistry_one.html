@@ -104,7 +104,7 @@
                                                    href="{{ url_for('download',
                                                    filename=chemistry_data.data_name
                                                    +
-                                                   chemistry_data.data_format
+                                                   chemistry_data.data_format,tablename=chemistry_data.__tablename__,id=chemistry_data.id
                                                    ) }}">
                                                    下载
                                                </a>
