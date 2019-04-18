@@ -27,7 +27,7 @@ app = Flask(__name__)
 # 配置文件上传的路径以及限制条件
 app.config['UPLOADED_PHOTO_DEST'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static\images")
 app.config['UPLOADED_PHOTO_ALLOW'] = ['png', 'jpg']
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=72000)
 # 设置SECRET_KEY以使用session
 app.config.update(SECRET_KEY='123456')
 # 实例化 UploadSet 对象
@@ -448,7 +448,10 @@ def register():
 def login():
     # 如果是正常的加载当前页面
     if request.method == 'GET':
-        return render_template('login.html')
+        context = {
+            'state': 0,
+        }
+        return render_template('login.html', **context)
     else:
         username = request.form.get('username')
         password = request.form.get('password')
@@ -460,7 +463,10 @@ def login():
             session.permanent = True
             return redirect(url_for('index'))
         else:
-            return render_template('login.html')
+            context = {
+                'state': 1,
+            }
+            return render_template('login.html', **context)
 
 # 注销登录
 @app.route('/logout/')

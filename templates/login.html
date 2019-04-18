@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block head %}
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="{{ url_for('static',filename='css/login.css') }}" rel="stylesheet">
 {% endblock %}
 
@@ -14,7 +15,7 @@
         <div id="formContent">
             <!-- Icon -->
             <div class="fadeIn first">
-                <img src="https://www.mutluinsanlarkulubu.com/wp-content/uploads/2015/06/ying_yang_by_moni158-d59zw54.png"
+                <img src="../static/images/login.png"
                      id="icon" alt="User Icon"/>
             </div>
 
@@ -22,9 +23,14 @@
             <form method="post" action="{{ url_for('login') }}">
                 <input type="text" id="username" class="fadeIn second" name="username" placeholder="账号">
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="密码">
-                <input type="submit" class="fadeIn fourth" value="立&nbsp;即&nbsp;登&nbsp;录">
+                <input type="submit" id="submit" class="fadeIn fourth" value="立&nbsp;即&nbsp;登&nbsp;录">
             </form>
-
+            <div class="alert alert-warning">
+                <a href="#" class="close" data-dismiss="alert">
+                    &times;
+                </a>
+                <strong>警告！</strong>您输入的账号或密码有误！
+            </div>
             <!-- Remind Passowrd -->
             <div id="formFooter">
                 <a class="underlineHover" href="{{ url_for('register') }}">点&nbsp;&nbsp;击&nbsp;&nbsp;注&nbsp;&nbsp;册</a>
@@ -37,14 +43,12 @@
 
 {#script资源文件#}
 {% block script %}
-    <script src="{{ bootstrap_find_resource('jquery.js', cdn='jquery') }}"></script>
-    <script src="{{ bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap') }}"></script>
-    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+        {#下面这两个变量用来判断是否警告框已经出现#}
+        if_show1 = 0;
+        if_show2 = 0;
         {#移除base.html顶部栏的index页面的选中效果，添加data页面的选中效果#}
         $(".index_active").removeClass("active")
         $(".article_active").removeClass("active");
