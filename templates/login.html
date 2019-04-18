@@ -25,6 +25,8 @@
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="密码">
                 <input type="submit" id="submit" class="fadeIn fourth" value="立&nbsp;即&nbsp;登&nbsp;录">
             </form>
+            <div id="tip_username"></div>
+            <div id="tip_password"></div>
             <div class="alert alert-warning">
                 <a href="#" class="close" data-dismiss="alert">
                     &times;
@@ -66,39 +68,39 @@
             if (username1 && password1) {
                 return value == true
             }
-            {#如果用户名没有填写，那么就出现提示框#}
-            if (username1 == "" && if_show1 == 0) {
-                var item = '<div class="alert alert-warning">' +
-                    '<a href="#" class="close" data-dismiss="alert">' +
-                    '&times;' +
-                    '</a>' +
-                    '<strong>警告！</strong>请输入用户名！' +
-                    '</div>'
-                $("form").after(item);
-                if_show1 = 1
-                {#开启提示框的关闭功能#}
-                $('.alert').alert();
-                {#关闭提示框时，进行重置操作#}
-                $(".alert").bind('closed.bs.alert', function () {
-                    if_show1 = 0;
-                });
-                e.preventDefault();
-            }
             {#如果密码没有填写，那么就出现提示框#}
             if (password1 == "" && if_show2 == 0) {
-                var item = '<div class="alert alert-warning">' +
+                var item = '<div class="alert alert-info">' +
                     '<a href="#" class="close" data-dismiss="alert">' +
                     '&times;' +
                     '</a>' +
                     '<strong>警告！</strong>请输入密码！' +
                     '</div>'
-                $("form").after(item);
+                $("#tip_username").html(item);
                 if_show2 = 1;
                 {#开启提示框的关闭功能#}
                 $('.alert').alert();
                 {#关闭提示框时，进行重置操作#}
                 $(".alert").bind('closed.bs.alert', function () {
                     if_show2 = 0;
+                });
+                e.preventDefault();
+            }
+            {#如果用户名没有填写，那么就出现提示框#}
+            if (username1 == "" && if_show1 == 0) {
+                var item = '<div class="alert alert-info">' +
+                    '<a href="#" class="close" data-dismiss="alert">' +
+                    '&times;' +
+                    '</a>' +
+                    '<strong>警告！</strong>请输入用户名！' +
+                    '</div>'
+                $("#tip_username").html(item);
+                if_show1 = 1
+                {#开启提示框的关闭功能#}
+                $('.alert').alert();
+                {#关闭提示框时，进行重置操作#}
+                $(".alert").bind('closed.bs.alert', function () {
+                    if_show1 = 0;
                 });
                 e.preventDefault();
             }

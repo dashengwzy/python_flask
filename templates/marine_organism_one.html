@@ -9,120 +9,147 @@
 {% endblock %}
 
 {% block main %}
-{#        页面主体的所有内容都放在下面的container里面#}
-  <div class="container marketing bottom_panel" >
-{#            顶部标题#}
-      <div class="page-header">
-              <h1>海洋生物数据集</h1>
-                <p>海洋生物数据集覆盖美国近海、日本东部、爱尔兰、澳大利亚等海域，包括浮游动物、浮游植物、初级生产力、鱼类、贝类等数据。</p>
-            </div>
-{#            面包屑导航栏#}
-            <ol class="breadcrumb">
-              <li><a href="http://127.0.0.1:5000/marine_organism/list/1/0">海洋生物</a></li>
-              <li><a href="">{{ marine_organism_one.data_set_name }}</a></li>
-            </ol>
+    {#        页面主体的所有内容都放在下面的container里面#}
+    <div class="container marketing bottom_panel">
+    {#            顶部标题#}
+    <div class="page-header">
+        <h1>海洋生物数据集</h1>
+        <p>海洋生物数据集覆盖美国近海、日本东部、爱尔兰、澳大利亚等海域，包括浮游动物、浮游植物、初级生产力、鱼类、贝类等数据。</p>
+    </div>
+    {#            面包屑导航栏#}
+    <ol class="breadcrumb">
+        <li><a href="http://127.0.0.1:5000/marine_organism/list/1/0">海洋生物</a></li>
+        <li><a href="">{{ marine_organism_one.data_set_name }}</a></li>
+    </ol>
 
-{#        单个数据集相关内容的展示页面#}
-        <div class="row panel_bottom">
-{#          单个数据集的基本信息#}
-            <div class="col-md-6 col-lg-6">
-               <div class="panel panel-default">
+    {#        单个数据集相关内容的展示页面#}
+    <div class="row panel_bottom">
+        {#          单个数据集的基本信息#}
+        <div class="col-md-6 col-lg-6">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="box box-solid bg-primary">
                         <div class="box-header">
                             <h4 class="box-title text-left"><strong>基本信息</strong></h4>
                         </div>
-                      <div class="box-body panel-height">
-                          <p class="text-left box-font">时间范围：<span class="text-primary">{{ marine_organism_one.data_set_time_frame }}</span></p>
-                          <p class="text-left box-font">空间位置：<span class="text-primary">{{ marine_organism_one.data_set_loc }}</span></p>
-                          <p class="text-left box-font">数据大小：<span class="text-primary">{{ marine_organism_one.data_set_size }}</span></p>
-                      </div>
+                        <div class="box-body panel-height">
+                            <p class="text-left box-font">时间范围：<span
+                                    class="text-primary">{{ marine_organism_one.data_set_time_frame }}</span></p>
+                            <p class="text-left box-font">空间位置：<span
+                                    class="text-primary">{{ marine_organism_one.data_set_loc }}</span></p>
+                            <p class="text-left box-font">数据大小：<span
+                                    class="text-primary">{{ marine_organism_one.data_set_size }}</span></p>
+                        </div>
                     </div>
                 </div>
-               </div>
             </div>
-{#          单个数据集的概要描述#}
-            <div class="col-md-6 col-lg-6">
-               <div class="panel panel-default">
+        </div>
+        {#          单个数据集的概要描述#}
+        <div class="col-md-6 col-lg-6">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="box box-solid bg-primary">
                         <div class="box-header">
                             <h4 class="box-title text-left"><strong>数据集摘要</strong></h4>
                         </div>
                         <div class="box-body panel-height">
-                          <p class="text-left box-font">{{ marine_organism_one.data_set_abstract }}</p>
-{#                          <p class="text-left">时间范围</p>#}
-                        </div>
+                            <p class="text-left box-font">{{ marine_organism_one.data_set_abstract }}</p>
+                            {#                          <p class="text-left">时间范围</p>#}
                         </div>
                     </div>
-                   </div>
                 </div>
-{#          单个数据集的列表展示#}
-            <div class="col-md-6 col-lg-12">
-               <div class="panel panel-default">
+            </div>
+        </div>
+        {#          单个数据集的列表展示#}
+        <div class="col-md-6 col-lg-12">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="box box-solid bg-primary">
                         <div class="box-header">
                             <h4 class="box-title text-left"><strong>数据集清单</strong></h4>
                         </div>
                         <div class="box-body table-body">
-{#                      根据输入条件搜索内容#}
-                        <form class="form-inline text-right form-search" action="#" method="post">
-                          <div class="form-group">
-                               <label for="exampleInputName2">按数据名称检索：</label>
-                              <div class="input-group">
-                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入关键字" name="key_word">
-                              </div>
-                          </div>
-                          <button type="submit" class="btn btn-primary">查询</button>
-                        </form>
+                            {#                      根据输入条件搜索内容#}
+                            <form class="form-inline text-right form-search" action="#" method="post">
+                                <div class="form-group">
+                                    <label for="exampleInputName2">按数据名称检索：</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="exampleInputAmount"
+                                               placeholder="请输入关键字" name="key_word">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">查询</button>
+                            </form>
                             <div class="bs-example" data-example-id="bordered-table">
-                            <table class="table table-bordered table-striped table-hover">
-                              <thead>
-                                <tr>
-                                  <th>数据编号</th>
-                                  <th>数据名称</th>
-                                  <th>上传时间</th>
-                                  <th>数据格式</th>
-                                  <th>操作</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-{#                              循环将所有数据集展示出来#}
-                               {% for organism_data in organism_datas %}
-                                   <tr>
-                                      <th scope="row">{{ loop.index }}</th>
-                                      <td>{{ organism_data.data_name }}</td>
-                                      <td>{{ organism_data.data_time }}</td>
-                                      <td>{{ organism_data.data_format  }}</td>
-                                      <td>
-                                           <button type="button" class="btn btn-default btn-xs" >
-                                               <a  class="download_a_none" href="{{ url_for('download',
+                                <table class="table table-bordered table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>数据编号</th>
+                                        <th>数据名称</th>
+                                        <th>上传时间</th>
+                                        <th>数据格式</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {#                              循环将所有数据集展示出来#}
+                                    {% for organism_data in organism_datas %}
+                                        <tr>
+                                            <th scope="row">{{ loop.index }}</th>
+                                            <td>{{ organism_data.data_name }}</td>
+                                            <td>{{ organism_data.data_time }}</td>
+                                            <td>{{ organism_data.data_format }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-default btn-xs">
+                                                    <a class="download_a_none" href="{{ url_for('download',
                                                filename=organism_data.data_name+organism_data.data_format
                                                ,tablename=organism_data.__tablename__,id=organism_data.id
                                                ) }}">
-                                                   下载
-                                               </a>
-                                           </button>
-                                      </td>
-                                   </tr>
-                                {% endfor %}
-                              </tbody>
-                            </table>
+                                                        下载
+                                                    </a>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div id="tips"></div>
                         </div>
                     </div>
                 </div>
-               </div>
             </div>
         </div>
 
-        </div>
+    </div>
 {% endblock %}
 {#script资源文件#}
 {% block script %}
-    <script src="{{bootstrap_find_resource('jquery.js', cdn='jquery')}}"></script>
-    <script src="{{bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap')}}"></script>
+    <script src="{{ bootstrap_find_resource('jquery.js', cdn='jquery') }}"></script>
+    <script src="{{ bootstrap_find_resource('js/bootstrap.js', cdn='bootstrap') }}"></script>
     <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+    <script>
+        $(function () {
+            $('.download_a_none').click(function (e) {
+                {#从session中用户的登陆信息取出来，如果用户没有登陆，那个这个应该是空的#}
+                my_user = $('<div>').html('{{user}}').text();
+                if (my_user == "") {
+                    {#如果用户没登录，则动态拼接警告给他#}
+                    var item = '<div class="alert alert-info">' +
+                        '<a href="#" class="close" data-dismiss="alert">' +
+                        '&times;' +
+                        '</a>' +
+                        '<strong>警告！</strong>您应该先去右上角登陆再说！' +
+                        '</div>'
+                    $("#tips").html(item);
+                    {#阻止本应该发生的事情#}
+                    e.preventDefault();
+                } else {
+                    return value = true;
+                }
+            });
+        });
+    </script>
 {% endblock %}

@@ -60,32 +60,6 @@ def show(name):
     return render_template('show.html', url=url, name=name)
 
 
-# 下载文件测试函数
-# @app.route('/download/file_name:<filename>', methods=['GET'])
-# def download(filename):
-#     if request.method == "GET":
-#         if os.path.isfile(os.path.join('static/upload_file', filename)):
-#             return send_from_directory('static/upload_file', filename, as_attachment=True)
-#         abort(404)
-
-# @app.route('/base')
-# def base():
-#     # 增加数据
-#     # 增加：
-#     Chemistry_data1 = Chemistry_data(
-#                      data_route='/static/upload_file/OSDO2012-2017.csv',
-#                      data_name='OSDO2012-2017',
-#                      down_time='0',
-#                      data_format='.csv',
-#                      data_kind='WOD计划数据集',
-#                      data_refresh='年更新',
-#                      uid_hydrology=1,
-#                     )
-#     db.session.add(Chemistry_data1)
-#     # 事务
-#     db.session.commit()
-#     return render_template('base.html', title_name='海洋数据平台')
-
 
 @app.route('/index')
 def index():
