@@ -52,5 +52,57 @@
         {#移除base.html顶部栏的index页面的选中效果，添加data页面的选中效果#}
         $(".index_active").removeClass("active")
         $(".article_active").removeClass("active");
+        $(function () {
+            {#如果是第一次打开页面，那传回来的值就不一样，就要把提示框关掉#}
+            if (!{{ state }}) {
+                $('.close').alert('close');
+            }
+
+        });
+        $('#submit').click(function (e) {
+            username1 = $("#username").val();
+            password1 = $("#password").val();
+            {#如果两个值都填写了，那么就直接跳转#}
+            if (username1 && password1) {
+                return value == true
+            }
+            {#如果用户名没有填写，那么就出现提示框#}
+            if (username1 == "" && if_show1 == 0) {
+                var item = '<div class="alert alert-warning">' +
+                    '<a href="#" class="close" data-dismiss="alert">' +
+                    '&times;' +
+                    '</a>' +
+                    '<strong>警告！</strong>请输入用户名！' +
+                    '</div>'
+                $("form").after(item);
+                if_show1 = 1
+                {#开启提示框的关闭功能#}
+                $('.alert').alert();
+                {#关闭提示框时，进行重置操作#}
+                $(".alert").bind('closed.bs.alert', function () {
+                    if_show1 = 0;
+                });
+                e.preventDefault();
+            }
+            {#如果密码没有填写，那么就出现提示框#}
+            if (password1 == "" && if_show2 == 0) {
+                var item = '<div class="alert alert-warning">' +
+                    '<a href="#" class="close" data-dismiss="alert">' +
+                    '&times;' +
+                    '</a>' +
+                    '<strong>警告！</strong>请输入密码！' +
+                    '</div>'
+                $("form").after(item);
+                if_show2 = 1;
+                {#开启提示框的关闭功能#}
+                $('.alert').alert();
+                {#关闭提示框时，进行重置操作#}
+                $(".alert").bind('closed.bs.alert', function () {
+                    if_show2 = 0;
+                });
+                e.preventDefault();
+            }
+            e.preventDefault();
+        });
     </script>
 {% endblock %}

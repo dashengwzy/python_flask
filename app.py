@@ -27,7 +27,7 @@ app = Flask(__name__)
 # 配置文件上传的路径以及限制条件
 app.config['UPLOADED_PHOTO_DEST'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static\images")
 app.config['UPLOADED_PHOTO_ALLOW'] = ['png', 'jpg']
-app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=72000)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(seconds=1)
 # 设置SECRET_KEY以使用session
 app.config.update(SECRET_KEY='123456')
 # 实例化 UploadSet 对象
@@ -109,7 +109,7 @@ def index():
     cmpfun_down = operator.attrgetter('down_time')  # 参数为排序依据的属性，根据下载次数进行排序
     data_all_down.sort(key=cmpfun_down, reverse=True)  # 根据配置进行排序
     # 查询结果限制在5条内容
-    articles = Article.query.order_by('id').limit(5).all()
+    articles = Article.query.order_by('time').limit(5).all()
     # 对过长的标题进行一些处理
     for article in articles:
         if len(article.title) > 18:
@@ -432,14 +432,6 @@ def register():
             db.session.commit()
             return render_template('login.html')
         else:
-            # path = 'E:/test1/templates/register.html'
-            # htmlfile = open(path, 'r', encoding='utf-8')
-            # htmlhandle = htmlfile.read()
-            # soup = BeautifulSoup(htmlhandle, 'lxml')
-            # kk = soup.select('#alert_hide')[0]
-            # # del (kk['id'])
-            #
-            # kk['id'] = "alert_show"
             return render_template('register_two.html')
 
 
@@ -472,7 +464,10 @@ def login():
 @app.route('/logout/')
 def logout():
     session.clear()
-    return redirect(url_for('login'))
+    context = {
+        'state': 0,
+    }
+    return render_template('login.html', **context)
 
 
 
